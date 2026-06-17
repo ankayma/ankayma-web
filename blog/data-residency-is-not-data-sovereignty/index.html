@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data residency is not data sovereignty — Ankayma</title>
+  <meta name="description" content="Most fintech systems are built on the weaker reading of 'data sovereignty' while the contract promises the stronger one. The gap stays invisible until an auditor asks you to prove which one you actually have." />
+  <link rel="canonical" href="https://ankayma.com/blog/data-residency-is-not-data-sovereignty/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Data residency is not data sovereignty" />
+  <meta property="og:description" content="Does your obligation constrain where the data sits, or who is technically able to read it? The distinction decides your whole architecture." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ankayma.com/blog/data-residency-is-not-data-sovereignty/" />
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">Ank<span>ayma</span></a>
+    <ul>
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a class="btn btn-primary" href="/#download">Download free</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Data residency is not data sovereignty</h1>
+    <p>By Luffy Bao, CTO at Ankayma · June 2026 · <a href="/blog/">← All writing</a></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <p>When a regulator writes "data sovereignty" into a circular, two engineers in the room hear two different things. One hears <em>keep the data in-country</em>. The other hears <em>make sure no one outside our control can read it</em>.</p>
+
+    <p>Those are not the same guarantee. Most fintech systems are quietly built on the weaker reading while the contract promises the stronger one. The gap stays invisible — until the day an auditor, a regulator, or an incident-response team asks you to prove which one you actually have.</p>
+
+    <p>I want to separate the two cleanly, because the distinction decides how you manage encryption keys, how you reason about risk, and — for some of you — whether you're even allowed to put a regulated workload on the platform at all. It comes down to one question: does the obligation constrain <em>where the data sits</em>, or <em>who is technically able to read it</em>?</p>
+
+    <p><strong>Location-bound sovereignty: data in-country + BYOK.</strong> This is the common answer. Data sits physically in-country. You generate your own encryption key and load it into the provider's key-management service (the bring-your-own-key, or BYOK, model). Network paths, logs, and storage all stay inside the jurisdiction. This satisfies a residency-style obligation, and for many workloads it is genuinely enough.</p>
+
+    <p>But notice what it does <em>not</em> give you: the provider's infrastructure still performs the decryption, and the key still lives with them. Under a lawful access order, a sufficiently privileged insider, or a control-plane compromise, the data can be read in the clear — without your knowledge and without your participation. Location-bound sovereignty answers <em>where the data is</em>; it does not answer <em>who is able to read it</em>.</p>
+
+    <p><strong>Capability-bound sovereignty: only you hold the key.</strong> This makes a fundamentally different promise: the provider — including me — is <em>technically unable</em> to read the data. The key never leaves your hands. The provider only ever operates on encrypted data, or inside an isolated enclave it cannot itself open (the hold-your-own-key, or HYOK, model). Here, sovereignty stops being a line in a contract and becomes a property of the cryptography itself. It is the only level that survives the question every serious security team eventually asks: <em>what happens when the provider is compelled, breached, or acquired?</em> In the location-bound case, the honest answer is "they can be forced to hand over readable data." In the capability-bound case, the honest answer is "they have nothing readable to hand over."</p>
+
+    <p><strong>What this <em>cannot</em> do — said plainly.</strong> Capability-bound sovereignty does not make you immune to all legal process. It removes exactly one thing: a provider silently decrypting stored data in bulk. It does <em>not</em> close the other paths — in principle a provider can still be compelled to tamper with client-side software, to surrender the key used to sign updates, or to hand over metadata, and such orders sometimes come with a gag attached. What it actually changes is this: reaching readable data <em>must go through whoever holds the key</em> — that is, through you. So every access becomes <em>visible and requires your participation</em>, instead of happening silently on the provider's side. Trust shifts to the integrity of the client software and the update-signing keys — it moves, it doesn't vanish. And because that trust moves to the client, we keep the client — the app and the UI — public source from the start, so that shifted trust is <em>externally checkable</em> rather than taken on faith. <em>How</em> you verify a build matches the public source I treat separately, in a follow-up.</p>
+
+    <p>And because I operate under government regulation, there are compliance obligations I am <em>required</em> to meet — I don't hide them behind the word "sovereignty." Every such obligation is written explicitly into the contract so the enterprise understands it <em>before</em> they use the system. A limit stated upfront keeps trust longer than a perfect promise that breaks later.</p>
+
+    <p><strong>The real cost of the capability-bound model — don't skip this.</strong> It is not automatically better. It's a different cost trade-off, and if any provider sells it to you without naming the points below, walk away:</p>
+
+    <ul>
+      <li><strong>Losing the key is final.</strong> If you hold the only key and lose it, there is no "recover" button from the provider — because such a button, if the provider could press it, is exactly the capability this model deliberately removes. A single-key-holder design means careless custody equals <em>total</em> loss.</li>
+      <li><strong>The operational burden moves to you.</strong> Key rotation, recovery drills, custody governance — all yours. You can't outsource the very thing that makes it sovereign.</li>
+      <li><strong>Some features get harder.</strong> Anything that needs to read data server-side — server-side search, certain analytics, assisted recovery — has to be redesigned or dropped.</li>
+      <li><strong>Sometimes it's overkill.</strong> If your obligation only requires data to stay in-country, and your threat model accepts a provider that can decrypt, then this model is cost and friction you don't need.</li>
+    </ul>
+
+    <p><strong>So which one does your regulator actually require?</strong> Read the obligation exactly as written, not as a sales slide paraphrases it. If it constrains <em>location and access logging</em> — where data lives, who touched it, the audit trail — then location-bound is likely enough. If it constrains <em>who is technically able to access</em> — language about exclusive control, non-repudiable key custody, or the provider being <em>unable</em> to disclose readable data — then you're in capability-bound territory, and BYOK will not pass a serious audit no matter how it's marketed. One diagnostic question — <em>does my obligation constrain location, or the ability to read?</em> — tells you which architecture you're really buying.</p>
+
+    <p><strong>Let me state my bias.</strong> I build toward the hold-your-own-key approach, so by all means be skeptical of how I frame this — you should be. But my claim here is narrow: don't choose the capability-bound model just because a provider — me included — says the word "sovereignty." Choose it because your obligation constrains <em>the ability to read</em>, not just <em>location</em>. And if it only constrains location, don't let anyone sell you the heavier thing. The point is simple: architecture should follow the obligation, not the marketing.</p>
+
+    <p>I write about this because it's exactly the problem I'm building at ankayma. If you're weighing these two approaches for a regulated workload, I'd like to hear your context — reach out, even if only to poke holes in mine.</p>
+
+    <p style="margin-top:48px; padding-top:24px; border-top:1px solid var(--border);">
+      <em>Luffy Bao is CTO at Ankayma, building zero-trust mesh infrastructure for regulated organizations in Southeast Asia and the Gulf. Questions or counterarguments? <a href="mailto:hello@ankayma.com">hello@ankayma.com</a></em>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

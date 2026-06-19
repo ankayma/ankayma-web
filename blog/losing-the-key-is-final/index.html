@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Losing the key is final — and why a "recovery" button is a backdoor — Ankayma</title>
+  <meta name="description" content="You cannot have both 'the provider can never read my data' and a recovery button only they can press. Why a provider-side recovery path is a backdoor — and what honest, customer-controlled recovery looks like." />
+  <link rel="canonical" href="https://ankayma.com/blog/losing-the-key-is-final/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Losing the key is final — and why a &quot;recovery&quot; button is a backdoor" />
+  <meta property="og:description" content="If the provider can restore your access without your key, they have a way in without your key — exactly the capability you were paying to remove." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ankayma.com/blog/losing-the-key-is-final/" />
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">Ank<span>ayma</span></a>
+    <ul>
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a class="btn btn-primary" href="/#download">Download free</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Losing the key is final — and why a "recovery" button is a backdoor</h1>
+    <p>By Luffy Bao, CTO at Ankayma · June 2026 · <a href="/blog/">← All writing</a></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <p>Almost every executive weighing a hold-your-own-key design asks the same question, and it's a fair one: <em>what happens if we lose the key?</em> In a capability-bound model — where the provider is technically unable to read your data because only you hold the key — the blunt answer is that losing the only key means losing the data. There is no button on the provider's side to bring it back.</p>
+
+    <p>That answer makes people uncomfortable, so the pressure is always to add a recovery path. This is exactly where the whole guarantee can quietly come apart, because "recovery" means two completely different things, and one of them is the thing you were paying to remove.</p>
+
+    <p><strong>"Recovery" has two readings.</strong> One is <em>provider-side recovery</em>: the provider keeps some way to restore your access if you lose your key. The other is <em>recovery you control</em>: access can be reconstructed, but only by parties you designate, never by the provider alone. These sound similar on a feature list. They are opposites in the threat model.</p>
+
+    <p><strong>A provider-side recovery button is a backdoor wearing a friendly label, and this is just logic.</strong> If the provider can restore your access without your key, then the provider has a way to obtain access without your key — which is precisely the capability that capability-bound sovereignty is supposed to remove. You cannot have both "the provider can never read my data" and "the provider can get me back in if I lose my key." If both are on the same page, one of them is false. The recovery button is not an extra feature bolted onto a sovereign design; it is the deletion of what made it sovereign. So when a provider offers you exclusive control <em>and</em> a reassuring "don't worry, we can always restore it," that is the moment to slow down, not relax.</p>
+
+    <p><strong>The honest answer keeps recovery on your side of the line.</strong> Losing the only key being final is a real risk, and the response is not to hand a master key back to the provider — it's to make sure there was never a single key to lose. The standard tools:</p>
+
+    <ul>
+      <li><strong>Threshold / 2-of-3 custody, for recovery.</strong> The root key is split into shares (for example, with Shamir's scheme), and a quorum — say two of three — is needed to reconstruct it. This is the <em>recovery</em> path, not your day-to-day read operation: routine reads run on an operational key held in hardware you control, so you are not gathering a quorum for every read. No single holder, and no provider, can reconstruct the root key alone, but losing one share is survivable.</li>
+      <li><strong>Designated custodians.</strong> You choose who holds shares: officers, a board, separate departments, a notary or escrow under your control — distributed across people and ideally jurisdictions.</li>
+      <li><strong>Hardware custody and recovery drills.</strong> Shares live in hardware security modules or equivalent, and you <em>rehearse</em> reconstruction before you need it, because a recovery path you've never tested is a recovery path you don't have.</li>
+    </ul>
+
+    <p><strong>Don't skip the cost — this model isn't free, it's different.</strong> Threshold recovery doesn't eliminate risk; it reshapes it, and you should choose it with eyes open:</p>
+
+    <ul>
+      <li><strong>The operational burden is yours, permanently.</strong> Issuing shares, rotating them when a custodian leaves, running drills, governing who holds what — none of this can be outsourced to the provider, because outsourcing it <em>to the provider</em> is how you recreate the backdoor.</li>
+      <li><strong>You trade single-point-of-loss for coordination-and-collusion risk.</strong> Now the failure modes are "too many custodians lost their shares at once" and "enough custodians colluded." Better failure modes than a provider backdoor — but they are real, and choosing the quorum is a genuine judgment call, not a default.</li>
+      <li><strong>Some conveniences genuinely cannot exist.</strong> Instant self-serve "forgot my key, reset it now" is one of them. If you require that convenience, you are choosing a model where someone other than you can let you back in — and you should at least name that you're choosing it.</li>
+    </ul>
+
+    <p>And the limit I'll state plainly: distributed recovery protects you against <em>losing</em> access and against a <em>provider acting alone</em>. It does not make you immune to legal process reaching your custodians, and it does not remove the need to trust the people you chose to hold shares. The trust doesn't vanish; it moves — from a single provider to a quorum you selected and can audit. That move is the point. It's also work only you can do, because the moment you ask the provider to do it for you, you're back to the button.</p>
+
+    <p><strong>Let me state my bias.</strong> I build toward distributed, provider-can't-act-alone recovery, so be skeptical of how I frame the trade-off. But the claim is narrow: don't let the discomfort of "losing the key is final" talk you into a recovery path that quietly reintroduces the exact capability you were trying to remove. The right fix for a single point of loss is not a provider master key — it's no single point at all.</p>
+
+    <p><strong>So what should you actually ask?</strong> Run the question forward. <em>If I lost my key tomorrow, who could restore access — and does that list include the provider acting alone?</em> If it does, ask the follow-up that matters: <em>what else does that same power let the provider do, on a normal day, without me?</em> The answer to the second question is the real measure of how sovereign the design was in the first place.</p>
+
+    <p>I write about this because the recovery conversation is where a lot of "zero-knowledge" promises quietly fail, and it's a core part of what I'm building at ankayma. If you're weighing how to make a hold-your-own-key system survivable without handing back the keys, I'd like to hear your constraints — including the ones that make my approach look wrong.</p>
+
+    <p style="margin-top:48px; padding-top:24px; border-top:1px solid var(--border);">
+      <em>Luffy Bao is CTO at Ankayma, building zero-trust mesh infrastructure for regulated organizations in Southeast Asia and the Gulf. Questions or counterarguments? <a href="mailto:hello@ankayma.com">hello@ankayma.com</a></em>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

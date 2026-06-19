@@ -1,13 +1,13 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0a0a0f;
-  --surface: #13131a;
-  --border: #1e1e2e;
-  --text: #e0e0f0;
-  --dim: #7070a0;
-  --accent: #6366f1;
-  --accent-dim: #4f52c9;
+  --bg: #0a0b0f;
+  --surface: #13141c;
+  --border: #1e2030;
+  --text: #f4f6fb;
+  --dim: #7c80a6;
+  --accent: #4f7dff;
+  --accent-dim: #3c63d6;
   --success: #22c55e;
   --warn: #f59e0b;
   --radius: 12px;

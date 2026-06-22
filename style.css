@@ -186,6 +186,67 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 .step-body strong { display: block; font-size: 15px; margin-bottom: 4px; }
 .step-body span { font-size: 13px; color: var(--dim); }
 
+/* SOVEREIGN CI/CD — deploy section */
+.deploy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.deploy-grid .steps { max-width: none; }
+.step-body code, .honest-note code {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.9em;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 5px;
+  color: var(--accent);
+  word-break: break-word;
+}
+.receipt {
+  background: #0c0d13;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+.receipt-bar {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.receipt-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+.receipt-body { padding: 16px 18px; color: var(--text); }
+.rl-full { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rl-head { color: var(--accent); margin: 12px 0 4px; }
+.rl-head::before { content: "── "; }
+.rl { display: flex; gap: 10px; }
+.rk { color: var(--dim); width: 56px; flex-shrink: 0; }
+.rv { color: var(--text); min-width: 0; word-break: break-word; }
+.c-dim { color: var(--dim); }
+.c-ok { color: var(--success); }
+.c-acc { color: var(--accent); }
+.prove-callout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 24px;
+  padding: 20px 24px;
+  border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+  background: color-mix(in srgb, var(--success) 6%, var(--surface));
+  border-radius: var(--radius);
+}
+.prove-icon { color: var(--success); flex-shrink: 0; margin-top: 2px; }
+.prove-callout strong { display: block; margin-bottom: 4px; }
+.prove-callout p { font-size: 14px; color: var(--dim); margin: 0; }
+.honest-note { font-size: 13px; color: var(--dim); margin-top: 20px; max-width: 680px; }
+.honest-note strong { color: var(--text); }
+
 /* FEATURES */
 .features-grid {
   display: grid;
@@ -296,6 +357,9 @@ footer a:hover { color: var(--text); }
 .prose .tag.a { background: color-mix(in srgb, var(--warn) 15%, transparent); color: var(--warn); }
 .prose .tag.t { background: color-mix(in srgb, var(--success) 15%, transparent); color: var(--success); }
 
+@media (max-width: 760px) {
+  .deploy-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
   nav ul { display: none; }
   .hero { padding: 64px 0 48px; }

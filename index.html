@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ankayma — Zero-trust P2P network for developers</title>
-  <meta name="description" content="Connect any device, any network. WireGuard mesh with customer-controlled keys. Open-source agent. Under 5 minutes to first tunnel." />
+  <meta name="description" content="Zero-trust mesh with customer-controlled keys. Deploy to prod from CI with no static secret — and a signed receipt that proves it. Open-source agent. Under 5 minutes." />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
@@ -59,42 +59,86 @@
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
+<!-- HOW IT WORKS — install to proof (mesh + secretless deploy + receipt) -->
 <section class="section" id="how" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="wrap">
     <div class="section-label">How it works</div>
-    <h2>From install to tunnel in under 5 minutes</h2>
-    <p>No configuration files, no manual key exchange, no firewall rules.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <strong>Sign up with GitHub</strong>
-          <span>One click. Your GitHub account gates access — no new password to manage.</span>
+    <h2>From install to proof in 5 minutes</h2>
+    <p>Stand up the mesh, deploy to prod from CI with <strong>no static secret</strong>, and walk away with a signed receipt that proves it. Connection is a commodity — the proof is the product.</p>
+
+    <div class="deploy-grid">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Sign up with GitHub</strong>
+            <span>One click. Your GitHub account gates access — no new password to manage.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Your devices enroll</strong>
+            <span>CLI on your server, app on your laptop and phone. The WireGuard keypair is generated locally — the private key never leaves your device, not even to us. Each device gets a stable overlay IP and a cert signed by your own tenant CA, and <strong>is</strong> your admin identity — no roles to wire up, no secret to store.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Set a deploy rule from anywhere</strong>
+            <span>From your laptop or your phone: <code>agent ci-policy add --repo you/app --ref main --target prod</code>. “This repo, this branch, deploys to this box.” Change it later the same way — no second ritual.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>CI proves who it is — no static secret</strong>
+            <span>Your GitHub Action mints a short-lived OIDC token for that one run. Scoped, deploy-only, expires in minutes. Nothing static ever lives in your CI.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <strong>Keep the proof</strong>
+            <span>A signed run-receipt — which run, which repo, which service it touched — in a tamper-evident ledger. Press “Prove it” to see the real path: peer-to-peer, with the vendor never on it.</span>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <strong>Keys generated on your device</strong>
-          <span>WireGuard keypair created locally. Private key never leaves your device — not even to us.</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <strong>Node joins your mesh</strong>
-          <span>Your device gets a stable overlay IP and a signed identity cert under your own tenant CA.</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <strong>Add more devices</strong>
-          <span>Install on any other device, sign in with the same GitHub account. Encrypted P2P tunnel up automatically.</span>
+
+      <div class="receipt" aria-label="Example signed run-receipt">
+        <div class="receipt-bar"><span></span><span></span><span></span></div>
+        <div class="receipt-body">
+          <div class="rl-full"><span class="c-dim">$</span> agent ci-deploy</div>
+          <div class="rl-full"><span class="c-ok">✓</span> ephemeral access granted <span class="c-dim">· expires 15m</span></div>
+          <div class="rl-head">Signed run-receipt</div>
+          <div class="rl"><span class="rk">run</span><span class="rv">ci_4747886d</span></div>
+          <div class="rl"><span class="rk">repo</span><span class="rv">acme/api</span></div>
+          <div class="rl"><span class="rk">ref</span><span class="rv">refs/heads/main</span></div>
+          <div class="rl"><span class="rk">issuer</span><span class="rv">github</span></div>
+          <div class="rl"><span class="rk">scope</span><span class="rv">deploy-only</span></div>
+          <div class="rl"><span class="rk">secret</span><span class="rv"><span class="c-ok">none</span></span></div>
+          <div class="rl"><span class="rk">ledger</span><span class="rv">CiDeployAccess <span class="c-dim">· tamper-evident</span></span></div>
+          <div class="rl"><span class="rk">verify</span><span class="rv">chain_intact <span class="c-ok">✓</span></span></div>
+          <div class="rl-head">Path</div>
+          <div class="rl"><span class="rk">data</span><span class="rv">direct WireGuard → prod-vps</span></div>
+          <div class="rl"><span class="rk">vendor</span><span class="rv">control channel only — <span class="c-ok">not on the data path</span></span></div>
         </div>
       </div>
     </div>
+
+    <div class="prove-callout">
+      <div class="prove-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+      </div>
+      <div>
+        <strong>Press “Prove it.”</strong>
+        <p>Most overlays can tell you it connected. None can hand you proof your traffic never touched the vendor. Ankayma shows the real path as an artifact you hold — not a promise you trust.</p>
+      </div>
+    </div>
+
+    <p class="honest-note">
+      Honest about the edges: at F0 the receipt is <strong>tamper-evident</strong> (anchored in an append-only ledger). Signing it with your own key plus an external witness is on the roadmap (Growth). Path-proof is absolute for direct peer-to-peer connections. <a href="honest-limits.html">See our honest limits →</a>
+    </p>
   </div>
 </section>
 
@@ -152,6 +196,7 @@
         <div class="plan-desc">For individual developers and small projects.</div>
         <ul>
           <li>Up to 5 nodes in your mesh</li>
+          <li>Secretless deploy from CI + signed receipt</li>
           <li>1 subdomain (*.mesh.dev)</li>
           <li>HTTP/HTTPS tunneling</li>
           <li>WireGuard P2P encryption</li>

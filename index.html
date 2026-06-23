@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ankayma — Zero-trust P2P network for developers</title>
-  <meta name="description" content="Zero-trust mesh with customer-controlled keys. Deploy to prod from CI with no static secret — and a signed receipt that proves it. Open-source agent. Under 5 minutes." />
+  <title>Ankayma — The sovereign zero-trust mesh</title>
+  <meta name="description" content="A sovereign, identity-aware zero-trust mesh: the vendor can't read your traffic and you can prove it. Deploy to prod from CI with no static secret — and a signed receipt. Open-source agent. Under 5 minutes." />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
@@ -29,8 +29,8 @@
 <section class="hero">
   <div class="wrap">
     <div class="badge">Open-source agent · Free tier available</div>
-    <h1>Zero-trust mesh network.<br /><em>Your keys. Your infra.</em></h1>
-    <p>Connect any device across any network with WireGuard. Customer-controlled keys, open-source agent you can audit, under 5 minutes to first tunnel.</p>
+    <h1>The <em>sovereign</em><br />zero-trust mesh.</h1>
+    <p>Identity-bound access across any network — your keys, your infra, and proof the vendor was never on your data path. Open-source agent you can audit, under 5 minutes to first tunnel.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#download">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
@@ -137,7 +137,7 @@
     </div>
 
     <p class="honest-note">
-      Honest about the edges: at F0 the receipt is <strong>tamper-evident</strong> (anchored in an append-only ledger). Signing it with your own key plus an external witness is on the roadmap (Growth). Path-proof is absolute for direct peer-to-peer connections. <a href="honest-limits.html">See our honest limits →</a>
+      Honest about the edges: at F0 the receipt is <strong>tamper-evident</strong> (anchored in an append-only ledger). The ledger records connection-level facts — which run, which identity, which service it reached — not the commands run inside a session. Signing it with your own key plus an external witness is on the roadmap (Growth). Path-proof is absolute for direct peer-to-peer connections. <a href="honest-limits.html">See our honest limits →</a>
     </p>
   </div>
 </section>
@@ -166,7 +166,7 @@
       </div>
       <div class="feat">
         <div class="feat-icon">🌐</div>
-        <strong>Edge channel (*.mesh.dev)</strong>
+        <strong>Edge channel (*.ankayma.net)</strong>
         <p>Expose any service in your mesh via a stable subdomain. No public IP, no port forwarding needed.</p>
       </div>
       <div class="feat">
@@ -197,7 +197,7 @@
         <ul>
           <li>Up to 5 nodes in your mesh</li>
           <li>Secretless deploy from CI + signed receipt</li>
-          <li>1 subdomain (*.mesh.dev)</li>
+          <li>1 subdomain (*.ankayma.net)</li>
           <li>HTTP/HTTPS tunneling</li>
           <li>WireGuard P2P encryption</li>
           <li>Open-source agent</li>

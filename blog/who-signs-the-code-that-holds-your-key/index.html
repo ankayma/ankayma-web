@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Who signs the code that holds your key? — Ankayma</title>
+  <meta name="description" content="Holding your own key closes one door: the provider reading your data at rest. It leaves a second open — who controls the next signed client update. Capability-bound sovereignty moves the trust; it doesn't erase it." />
+  <link rel="canonical" href="https://ankayma.com/blog/who-signs-the-code-that-holds-your-key/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Who signs the code that holds your key?" />
+  <meta property="og:description" content="Don't accept &quot;we can't read your data&quot; as the end of the security conversation. The harder half: can you verify the code using your key is the code you approved?" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ankayma.com/blog/who-signs-the-code-that-holds-your-key/" />
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a class="btn btn-primary" href="/#download">Download free</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Who signs the code that holds your key?</h1>
+    <p>By Luffy Bao, CTO at Ankayma · June 2026 · <a href="/blog/">← All writing</a></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <p>When a provider tells you "our infrastructure is technically unable to read your data," a good security engineer doesn't relax. The right next question is: <em>then what is the code I'm running, and who decides what it does the moment I use my key?</em></p>
+
+    <p>That is the right question, and it's the one I want to answer here. In a previous post I argued that holding your own key — the provider being <em>technically unable</em> to decrypt — is a stronger guarantee than keeping data in-country. I stand by that. But holding the only key closes exactly one door: the provider silently decrypting your data at rest. It leaves a second door standing, and most "zero-knowledge" pitches walk you straight past it without pointing.</p>
+
+    <p><strong>Trust in a provider has two surfaces, not one.</strong> The first is <em>can they read my data</em>. That's the one everyone argues about, and capability-bound sovereignty answers it: no, not without the key, and the key is yours. The second surface is <em>can they change the code that touches my key</em>. Your key only protects you while the software using it behaves. If I can ship you a client update — signed, legitimate, auto-installed — that copies the key out the moment you decrypt, then the cryptography was never the weak point. The weak point was who controls the next release.</p>
+
+    <p><strong>What hold-your-own-key actually guarantees — and what it doesn't.</strong> It guarantees that data sitting on my infrastructure is opaque to me. It does <em>not</em> guarantee that the software running on your side is the software you reviewed. Those are different promises, and the gap between them is where a serious adversary — or a serious legal order — goes. The honest framing: capability-bound sovereignty moves the trust from "the data at rest" to "the integrity of the client and the keys used to sign its updates." It moves; it does not vanish. Anyone who sells you the first guarantee while staying silent on the second is selling you half a system.</p>
+
+    <p><strong>The attack, said plainly.</strong> By default, any end-to-end system that also distributes its own client software exposes one path: the provider is compelled to push a targeted update signed with its own legitimate update-signing key — a build that looks identical to everyone else's, but for one target exfiltrates the key or the plaintext at the moment of use, and the order can arrive with a gag attached, so the victim is never told. This is not exotic; it is the standard, well-understood limit. The problem isn't the cryptography — it's who controls the next release, and whether they can do it <em>silently</em>. If the conversation about sovereignty stops at "we can't decrypt your data at rest," it has stopped one step too early.</p>
+
+    <p><strong>Where this lives, in our case — concretely.</strong> At ankayma, the client — the mobile app and the UI — is <a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">public source</a>; the control plane is not. That puts the attack surface in exactly one place: the <em>signed build</em> of the client, not the control plane. The control plane only ever sees encrypted data, so compelling or breaching it reaches no key and no plaintext; the key lives on the client side, so the only path to it is a client update carrying malicious code. Public client source is <em>necessary</em> for you to inspect — but not <em>sufficient</em>, because what runs on your device is the <em>build</em>, not the source. The question that decides everything: is that build actually compiled from the public source you can read? To be straight about where we are today: the client source is public; the part that lets you <em>verify a build matches the source</em> — reproducible builds and a transparency log — we are still building, not yet fully running. I'd rather say so than let you assume it's already there.</p>
+
+    <p><strong>What actually constrains it — don't skip this.</strong> The defense is not a cleverer cipher. It is making code <em>verifiable by someone other than the provider</em>, so a malicious build can't be both signed and silent. Each mechanism below helps, and each has a real cost — if a provider names the mechanism but hides the cost, be skeptical.</p>
+
+    <ul>
+      <li><strong>Reproducible builds.</strong> The published source must compile, bit-for-bit, to the binary you run, so anyone can check that the running code matches the public source. The cost: a genuinely reproducible build pipeline is hard engineering, and it constrains how you can build and ship for the rest of the product's life.</li>
+      <li><strong>Update transparency logs.</strong> Every released build is recorded in an append-only, publicly auditable log — the public commit history of the source repository, plus an independent transparency log (such as Sigstore/Rekor) so you don't have to trust a single platform. A build shipped <em>only to you</em> can't hide, because it isn't in the log everyone else sees. The cost is mostly <em>discipline</em> — every release has to go through this path, never out-of-band — rather than heavy infrastructure.</li>
+      <li><strong>Separating the signing role from the operating role.</strong> At ankayma, the layer that builds and edits releases — largely automated — does <em>not</em> hold the signing key; only the founder signs, through a logged process. So a release the operating layer produces on its own cannot ship itself — it has to pass through the signer. The cost: slower releases and real custody governance. <em>A limit to state plainly:</em> this is still <strong>one signer</strong>, not multi-party approval — it closes the "the operating layer pushes a strange build on its own" path, but not the "the signer is coerced or their key is stolen" path. The net for that case is the two mechanisms above: a build signed but not matching the public source shows up in the log. (Adding an <em>independent party outside the company</em> to the signing set is a stronger tier — it closes the coerced-single-signer case too — but that is its own relationship and cost, for later.)</li>
+    </ul>
+
+    <p>And let me be precise, so this doesn't read as confessing a hole: this architecture <em>closes</em> the silent, unilateral path — once those mechanisms are in place, no provider, me included, can push a malicious build and hide it. What it does <em>not</em> remove is coercion; none of this makes you immune to legal process. But coercion now has to pass through a public log or several independent custodians, so it becomes <em>visible and multi-party</em> instead of invisible and one-sided. Put plainly: pushing malicious code silently — the architecture removes it; being coerced — the architecture can't prevent it, but it can't hide it either. Crucially, the entity who can confirm a build is honest is no longer the provider — it's the transparency log and whoever independently verifies it. That is also why this only works if someone outside the provider is actually watching.</p>
+
+    <p><strong>Let me state my bias.</strong> I build toward verifiable client integrity, so discount my framing accordingly — you should. But my claim here is narrow: don't accept "we can't read your data" as the end of the security conversation. It's the <em>middle</em>. The end is "and here is how you, or a third party, can check that the code using your key is the code you approved." If a provider can't answer the second question, the first answer is doing less than it sounds like.</p>
+
+    <p><strong>So what should you actually ask?</strong> Read past the cryptography slide to the release process. One diagnostic question separates the providers who have thought about this from the ones who haven't: <em>when you push an update, can I independently verify the running binary matches your published source — or am I just trusting your signature?</em> If the honest answer is "trust the signature," then whoever controls signing controls everything the key was supposed to protect.</p>
+
+    <p>I write about this because it's the harder half of the problem I'm building at ankayma — the half that doesn't fit on a sovereignty slide. If you're evaluating a zero-knowledge or hold-your-own-key provider for a regulated workload, ask them the release-process question, and tell me what they say. I'd like to hear it — especially if it pokes a hole in mine.</p>
+
+    <p style="margin-top:48px; padding-top:24px; border-top:1px solid var(--border);">
+      <em>Luffy Bao is CTO at Ankayma, building zero-trust mesh infrastructure for regulated organizations in Southeast Asia and the Gulf. Questions or counterarguments? <a href="mailto:hello@ankayma.com">hello@ankayma.com</a></em>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

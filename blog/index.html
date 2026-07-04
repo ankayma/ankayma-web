@@ -34,6 +34,13 @@
   <div class="prose">
 
     <article style="padding-bottom:24px; border-bottom:1px solid var(--border); margin-bottom:24px;">
+      <h2 style="margin-bottom:6px;"><a href="/blog/your-ci-deploy-secret-will-leak/">Your CI deploy secret will leak — and why the answer is no secret to leak</a></h2>
+      <p style="color:var(--muted); margin-top:0; font-size:14px;">July 2026</p>
+      <p>Almost every pipeline eventually accumulates a long-lived deploy secret — and long-lived secrets leak at industrial scale. The structural fix isn't guarding the secret harder; it's per-run ephemeral identity with an immutable access log. And when an AI agent runs the deploy, the honest question isn't "will it get fooled" but "what can a fooled run reach, and can I prove what it did."</p>
+      <p><a href="/blog/your-ci-deploy-secret-will-leak/">Read →</a></p>
+    </article>
+
+    <article style="padding-bottom:24px; border-bottom:1px solid var(--border); margin-bottom:24px;">
       <h2 style="margin-bottom:6px;"><a href="/blog/who-signs-the-code-that-holds-your-key/">Who signs the code that holds your key?</a></h2>
       <p style="color:var(--muted); margin-top:0; font-size:14px;">June 2026</p>
       <p>Holding your own key closes one door — the provider reading your data at rest. It leaves a second open: who controls the next signed client update. Why "we can't read your data" is the middle of the security conversation, not the end — and the diagnostic question that tells you which.</p>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your CI deploy secret will leak — and why the answer is no secret to leak — Ankayma</title>
+  <meta name="description" content="Long-lived deploy secrets in CI leak at industrial scale, and AI in the pipeline makes it worse. The structural fix is not guarding the secret harder — it's per-run ephemeral identity, scoped and time-limited, with every access landing in an immutable log." />
+  <link rel="canonical" href="https://ankayma.com/blog/your-ci-deploy-secret-will-leak/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Your CI deploy secret will leak — and why the answer is no secret to leak" />
+  <meta property="og:description" content="A well-guarded secret is still a secret that can be taken. What a fooled deploy agent can reach — and whether you can prove what it did — matters more than betting it never gets fooled." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ankayma.com/blog/your-ci-deploy-secret-will-leak/" />
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a class="btn btn-primary" href="/#download">Download free</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Your CI deploy secret will leak — and why the answer is no secret to leak</h1>
+    <p>By Luffy Bao, CTO at Ankayma · July 2026 · <a href="/blog/">← All writing</a></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <p>Almost every pipeline, given enough time, accumulates the same thing: a long-lived deploy secret — an SSH key, a cloud key, a kubeconfig — sitting somewhere in CI so the deploy step can reach production. It's convenient. It's also what leaks. 2025 saw 28.65 million secrets hardcoded into public GitHub commits, the largest single-year jump ever measured; AI service credentials alone rose 81%. This isn't the bad luck of a few careless teams; it's a property of how CI/CD is built today.</p>
+
+    <p>When that makes people uncomfortable, the pressure is always to <em>guard the secret better</em> — put it in a vault, rotate it, turn on leak scanning. Those are good, but they don't touch the root: the secret still exists, still long-lived, still has to be present at deploy time. A well-guarded secret is still a secret that can be taken. And one thing makes this root heavier: AI writing code. AI-assisted commits leak secrets at roughly double the human-only rate, because whatever an agent reads in context is, to it, just another string — it has no built-in notion of "this is a credential, don't emit it."</p>
+
+    <p><strong>"Access" has two shapes, and they're opposites in the threat model.</strong> One is a <em>standing credential</em>: a stored secret, long-lived, waiting to be used. The other is an <em>ephemeral identity</em>: nothing is stored between runs — each deploy proves who it is, receives a scoped, time-limited grant, and that grant dissolves. On a feature list they sound the same ("the pipeline can deploy"). In the threat model, one is a thing that can be stolen, the other leaves nothing to steal between runs.</p>
+
+    <p><strong>The honest fix is to remove the long-lived secret, not guard it harder.</strong> The direction the industry is moving — and the one I'm building — is per-run identity: the pipeline issues a short-lived token for that run (GitHub Actions and GitLab both emit these on an open standard), which is exchanged for access that lives minutes, scoped to exactly what's needed, reaching exactly the target needed — and expires when the deploy is done. No secret is left sitting in CI to leak. The other half matters just as much: <em>the access itself is recorded</em> — who or what, reaching where, when — into a log that can't be edited. Removing the secret answers "who can get in"; the log answers "who did get in, and what did they do."</p>
+
+    <p><strong>When AI runs the deploy, change the question.</strong> The tempting question is "how do I make sure the agent never gets fooled?" The blunt answer: you can't guarantee that. Prompt injection is real, and an autonomous agent doing something irreversible — deleting data, pushing to production — won't hesitate or ask. So the right question isn't <em>whether</em> it gets fooled, but: <em>what can a fooled deploy reach, and can you afterward prove exactly what it did?</em> If the agent's identity is short-lived, scoped, time-limited, and every action it takes lands in an immutable log, then a compromised agent can only touch what policy allows, for minutes, and you hold the full record. To be plain: this does <strong>not</strong> stop the agent from being fooled — it <em>bounds</em> what a fooled agent can reach, and <em>keeps the evidence</em>. Those are two different things, and conflating them is where a lot of "safe AI" promises quietly fail.</p>
+
+    <p><strong>Don't skip the cost — this model isn't free, it's different.</strong> Ephemeral identity reshapes risk, it doesn't erase it:</p>
+
+    <ul>
+      <li><strong>You need an identity/access layer, and it's a dependency at deploy time.</strong> If that layer is down, the deploy fails. That's a deliberate trade: a failed deploy is <em>visible</em>, whereas a stolen secret can be abused silently for months.</li>
+      <li><strong>Choosing the right scope is a genuine judgment call.</strong> "What this run is allowed to reach" must be something you define, not a generous default. Too tight is annoying; too broad gives away most of the benefit.</li>
+      <li><strong>Initial setup takes work.</strong> Establishing trust between CI and the access layer, defining policy by branch/environment — done once, but not free.</li>
+    </ul>
+
+    <p><strong>Let me state my bias.</strong> I'm building a network layer where access is identity-bound, short-lived, and every access lands in an immutable log — at Ankayma — so be skeptical of how I weigh the trade-off. The claim is narrow: the secret-in-CI problem is <em>structural</em>, so the right fix is to <em>remove the long-lived secret</em>, not guard it harder; and for AI in the pipeline, design to <em>bound and record</em>, don't bet on it never being fooled.</p>
+
+    <p><strong>So what should you actually ask?</strong> Run the question forward. <em>If my CI is compromised tomorrow — or my deploy agent is talked into something it shouldn't do — what can it reach in production, and can I reconstruct exactly what it did?</em> If the answer depends on the scope of a secret sitting somewhere, you have a standing-credential problem — and it's worth fixing at the root.</p>
+
+    <p>I write about this because the "secret in CI" conversation is where a lot of pipelines that feel safe are standing on a key waiting to leak, and it's a core part of what I'm building at Ankayma. If you're weighing how a pipeline — or an autonomous deploy agent — can reach production without leaving a long-lived secret behind, I'd like to hear your constraints, including the ones that make my approach look wrong.</p>
+
+    <p style="color:var(--muted); font-size:14px;"><em>Figures on secret leakage (28.65 million secrets, +81% AI service credentials, AI-assisted commits leaking at roughly double the human-only rate) are from GitGuardian's State of Secrets Sprawl 2026 report.</em></p>
+
+    <p style="margin-top:48px; padding-top:24px; border-top:1px solid var(--border);">
+      <em>Luffy Bao is CTO at Ankayma, building zero-trust mesh infrastructure for regulated organizations in Southeast Asia and the Gulf. Questions or counterarguments? <a href="mailto:hello@ankayma.com">hello@ankayma.com</a></em>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

@@ -15,7 +15,6 @@
     <a class="logo" href="/">An<span>kayma</span></a>
     <ul>
       <li><a href="#how">How it works</a></li>
-      <li><a href="#features">Features</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#enterprise">Enterprise</a></li>
       <li><a href="/blog/">Blog</a></li>
@@ -28,103 +27,133 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="badge">Open-source agent · Free tier available</div>
-    <h1>The <em>sovereign</em><br />zero-trust mesh.</h1>
-    <p>Identity-bound access across any network — your keys, your infra, and proof the vendor was never on your data path. Open-source agent you can audit, under 5 minutes to first tunnel.</p>
+    <h1>The <em>sovereign</em> zero-trust mesh.</h1>
+    <p>Identity-bound access across any network — your keys, your infra, and proof the vendor was never on your data path.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#download">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-        Download — it's free
-      </a>
-      <a class="btn btn-outline" href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-        View source
-      </a>
-    </div>
-    <p class="hero-note">Sign up with GitHub · No credit card · Cancel anytime</p>
+        <a class="btn btn-primary" href="#download">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download — it's free
+        </a>
+        <a class="btn btn-outline" href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          View source
+        </a>
+      </div>
+      <p class="hero-note">Sign up with GitHub · No credit card · Cancel anytime</p>
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
-<div class="social-proof">
-  <div class="wrap">
-    <p>Built with</p>
-    <div class="trust-row">
-      <div class="trust-item"><div class="dot"></div> WireGuard</div>
-      <div class="trust-item"><div class="dot"></div> Rust</div>
-      <div class="trust-item"><div class="dot"></div> Open-source agent</div>
-      <div class="trust-item"><div class="dot"></div> Customer-controlled keys</div>
-      <div class="trust-item"><div class="dot"></div> No vendor key custody</div>
+<!-- COEXISTENCE (A-1) — the fear-remover: adds on without touching what's running -->
+<section class="coexist-strip">
+  <div class="wrap coexist-grid">
+    <div class="coexist-copy">
+      <p class="coexist-title">Adds on — never touches what's already running.</p>
+      <p class="coexist-sub">No interface takeover, no route hijack. Anything you keep out of the mesh stays exactly as it is — remove Ankayma and everything outside it is unaffected. Proof:</p>
+    </div>
+    <div class="coexist-paths">
+      <div class="path-card">
+        <div class="path-tag">Path 1 · DB replication — prod-critical</div>
+        <p>Not in the mesh, not dependent on it. <strong>Untouched.</strong></p>
+      </div>
+      <div class="path-card secured">
+        <div class="path-tag">Path 2 · Admin access — brought in</div>
+        <p>Just secured: identity-bound, default-deny, every session in your ledger.</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- HOW IT WORKS — install to proof (mesh + secretless deploy + receipt) -->
 <section class="section" id="how" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="wrap">
+    <span id="features"></span>
     <div class="section-label">How it works</div>
     <h2>From install to proof in 5 minutes</h2>
-    <p>Stand up the mesh, deploy to prod from CI with <strong>no static secret</strong>, and walk away with a signed receipt that proves it. Connection is a commodity — the proof is the product.</p>
+    <p>Pick what you want to prove first. Each path ends in proof you hold — not a promise you trust. Connection is a commodity; the receipt is the product.</p>
 
-    <div class="deploy-grid">
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <strong>Sign up with GitHub</strong>
-            <span>One click. Your GitHub account gates access — no new password to manage.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <strong>Your devices enroll</strong>
-            <span>CLI on your server, app on your laptop and phone. The WireGuard keypair is generated locally — the private key never leaves your device, not even to us. Each device gets a stable overlay IP and a cert signed by your own tenant CA, and <strong>is</strong> your admin identity — no roles to wire up, no secret to store.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <strong>Set a deploy rule from anywhere</strong>
-            <span>From your laptop or your phone: <code>agent ci-policy add --repo you/app --ref main --target prod</code>. “This repo, this branch, deploys to this box.” Change it later the same way — no second ritual.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <strong>CI proves who it is — no static secret</strong>
-            <span>Your GitHub Action mints a short-lived OIDC token for that one run. Scoped, deploy-only, expires in minutes. Nothing static ever lives in your CI.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">5</div>
-          <div class="step-body">
-            <strong>Keep the proof</strong>
-            <span>A signed run-receipt — which run, which repo, which service it touched — in a tamper-evident ledger. Press “Prove it” to see the real path: peer-to-peer, with the vendor never on it.</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="receipt" aria-label="Example signed run-receipt">
-        <div class="receipt-bar"><span></span><span></span><span></span></div>
-        <div class="receipt-body">
-          <div class="rl-full"><span class="c-dim">$</span> agent ci-deploy</div>
-          <div class="rl-full"><span class="c-ok">✓</span> ephemeral access granted <span class="c-dim">· expires 15m</span></div>
-          <div class="rl-head">Signed run-receipt</div>
-          <div class="rl"><span class="rk">run</span><span class="rv">ci_4747886d</span></div>
-          <div class="rl"><span class="rk">repo</span><span class="rv">acme/api</span></div>
-          <div class="rl"><span class="rk">ref</span><span class="rv">refs/heads/main</span></div>
-          <div class="rl"><span class="rk">issuer</span><span class="rv">github</span></div>
-          <div class="rl"><span class="rk">scope</span><span class="rv">deploy-only</span></div>
-          <div class="rl"><span class="rk">secret</span><span class="rv"><span class="c-ok">none</span></span></div>
-          <div class="rl"><span class="rk">ledger</span><span class="rv">CiDeployAccess <span class="c-dim">· tamper-evident</span></span></div>
-          <div class="rl"><span class="rk">verify</span><span class="rv">chain_intact <span class="c-ok">✓</span></span></div>
-          <div class="rl-head">Path</div>
-          <div class="rl"><span class="rk">data</span><span class="rv">direct WireGuard → prod-vps</span></div>
-          <div class="rl"><span class="rk">vendor</span><span class="rv">control channel only — <span class="c-ok">not on the data path</span></span></div>
-        </div>
-      </div>
+    <div class="wow-tabs" role="tablist" aria-label="Five-minute experiences">
+      <button type="button" class="wow-tab active" role="tab" aria-selected="true" data-panel="wow-privdomain">🌐 Private domain</button>
+      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="wow-cicd">🧾 No-secret CI/CD</button>
+      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="wow-ssh">🔑 No-key SSH <span class="badge badge-sm">early access</span></button>
     </div>
+
+    <div class="wow-panel active" id="wow-privdomain" role="tabpanel">
+      <p class="wow-pitch">Your service on your own domain — only your mesh can see it. No public DNS, no open port, and your client still opens the demo themselves.</p>
+      <div class="deploy-grid wow-split">
+        <div class="wow-steps">
+          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and enroll your devices — app on your laptop or phone, CLI on the machine that runs your service. Keys are generated locally and never leave the device; each one joins your mesh with a stable overlay IP.</span></div>
+          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>Add a private domain and point it at your service — the name exists only inside your mesh.</span></div>
+          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Open it from any of your devices — then send a join-link so your client's device can open it too.</span></div>
+        </div>
+        <figure class="tab-shot">
+          <img src="assets/app-subdomains.png" alt="Ankayma app — Subdomains screen: a private name mapped to a mesh node, TLS ready" width="656" height="659" loading="lazy" />
+          <figcaption>The app's Subdomains screen — your private name, mapped to your node, TLS ready.</figcaption>
+        </figure>
+      </div>
+      <p class="wow-proof">◈ Proof: no public DNS record, no public port — names resolve only inside your mesh.</p>
+      <p class="wow-tiers">Free: 5 names → Plus: 20 → Team: your team on them</p>
+    </div>
+
+    <div class="wow-panel" id="wow-cicd" role="tabpanel">
+      <p class="wow-pitch">Deploy from CI with no static secret — every run ends in a signed receipt you hold.</p>
+      <div class="deploy-grid wow-split">
+        <div class="wow-steps">
+          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and enroll your prod box — one CLI command. Keys are generated locally; your device <strong>is</strong> your admin identity, no secret to store.</span></div>
+          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>Set the rule from your laptop or phone: <code>agent ci-policy add --repo you/app --ref main --target prod</code>. "This repo, this branch, deploys to this box."</span></div>
+          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Push. Your Action mints a short-lived OIDC token — scoped, deploy-only, expires in minutes, nothing static in CI — and the signed run-receipt lands in your tamper-evident ledger.</span></div>
+        </div>
+        <div class="receipt" aria-label="Example signed run-receipt">
+          <div class="receipt-bar"><span></span><span></span><span></span></div>
+          <div class="receipt-body">
+            <div class="rl-full"><span class="c-dim">$</span> agent ci-deploy</div>
+            <div class="rl-full"><span class="c-ok">✓</span> ephemeral access granted <span class="c-dim">· expires 15m</span></div>
+            <div class="rl-head">Signed run-receipt</div>
+            <div class="rl"><span class="rk">run</span><span class="rv">ci_4747886d</span></div>
+            <div class="rl"><span class="rk">repo</span><span class="rv">acme/api</span></div>
+            <div class="rl"><span class="rk">ref</span><span class="rv">refs/heads/main</span></div>
+            <div class="rl"><span class="rk">issuer</span><span class="rv">github</span></div>
+            <div class="rl"><span class="rk">scope</span><span class="rv">deploy-only</span></div>
+            <div class="rl"><span class="rk">secret</span><span class="rv"><span class="c-ok">none</span></span></div>
+            <div class="rl"><span class="rk">ledger</span><span class="rv">CiDeployAccess <span class="c-dim">· tamper-evident</span></span></div>
+            <div class="rl"><span class="rk">verify</span><span class="rv">chain_intact <span class="c-ok">✓</span></span></div>
+            <div class="rl-head">Path</div>
+            <div class="rl"><span class="rk">data</span><span class="rv">direct WireGuard → prod-vps</span></div>
+            <div class="rl"><span class="rk">vendor</span><span class="rv">control channel only — <span class="c-ok">not on the data path</span></span></div>
+          </div>
+        </div>
+      </div>
+      <p class="wow-proof">◈ Proof: the run-receipt — which run, which repo, which service — <code>chain_intact ✓</code>.</p>
+      <p class="wow-tiers">Free: your repos → Team: your whole team → Growth: auditor-ready evidence</p>
+    </div>
+
+    <div class="wow-panel" id="wow-ssh" role="tabpanel">
+      <p class="wow-pitch">SSH to prod: no bastion, no static key — every session lands in your ledger.</p>
+      <div class="deploy-grid wow-split">
+        <div class="wow-steps">
+          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and install the agent on your laptop and your server — both enroll into the mesh; your device is your identity, no key file to copy around.</span></div>
+          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>SSH to the box over the mesh: <code>agent ssh prod-vps</code> — no bastion, no VPN, no static key.</span></div>
+          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Check your ledger: the session start is already there — who, which node, when.</span></div>
+        </div>
+        <figure class="tab-shot">
+          <img src="assets/app-ssh.png" alt="Ankayma app — SSH terminal connected to demo-server from an iPhone" width="656" height="503" loading="lazy" />
+          <figcaption>A real SSH session from the iPhone app — connected to your box, no key file, no bastion.</figcaption>
+        </figure>
+      </div>
+      <p class="wow-proof">◈ Proof: every session start is a ledger entry — who, which node, when.</p>
+      <p class="wow-tiers">Free: your devices → Team: your team → Growth: session evidence</p>
+    </div>
+
+    <script>
+      document.querySelectorAll('.wow-tabs .wow-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('.wow-tabs .wow-tab').forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+          document.querySelectorAll('.wow-panel').forEach(function (p) { p.classList.remove('active'); });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          document.getElementById(tab.dataset.panel).classList.add('active');
+        });
+      });
+    </script>
 
     <div class="prove-callout">
       <div class="prove-icon">
@@ -139,46 +168,10 @@
     <p class="honest-note">
       Honest about the edges: at F0 the receipt is <strong>tamper-evident</strong> (anchored in an append-only ledger). The ledger records connection-level facts — which run, which identity, which service it reached — not the commands run inside a session. Signing it with your own key plus an external witness is on the roadmap (Growth). Path-proof is absolute for direct peer-to-peer connections. <a href="honest-limits.html">See our honest limits →</a>
     </p>
-  </div>
-</section>
 
-<!-- FEATURES -->
-<section class="section" id="features">
-  <div class="wrap">
-    <div class="section-label">Features</div>
-    <h2>Zero trust, not zero control</h2>
-    <p>Designed for developers who want security without giving up auditability.</p>
-    <div class="features-grid">
-      <div class="feat">
-        <div class="feat-icon">🔒</div>
-        <strong>WireGuard end-to-end</strong>
-        <p>Modern cryptography. Data travels peer-to-peer, encrypted, never through our servers.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">🔑</div>
-        <strong>Your keys, your CA</strong>
-        <p>Each tenant gets its own Certificate Authority. We sign your node certs; we can't impersonate your nodes.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">📖</div>
-        <strong>Open-source agent</strong>
-        <p>The code running on your machines is fully auditable. Reproducible builds, Cosign-signed artifacts.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">🌐</div>
-        <strong>Edge channel (*.ankayma.net)</strong>
-        <p>Expose any service in your mesh via a stable subdomain. No public IP, no port forwarding needed.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">⚡</div>
-        <strong>NAT traversal built-in</strong>
-        <p>STUN + hole punching + relay fallback. Works behind NAT, firewalls, and mobile networks.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">🛡️</div>
-        <strong>Default-deny policy</strong>
-        <p>Every connection requires explicit policy approval. No implicit trust between nodes.</p>
-      </div>
+    <div class="under-hood">
+      <span class="uh-label">Under the hood</span>
+      <span class="uh-items">WireGuard end-to-end · your own tenant CA · NAT traversal (STUN + relay fallback) · default-deny policy · open-source agent, Cosign-signed builds</span>
     </div>
   </div>
 </section>
@@ -189,39 +182,80 @@
     <div class="section-label">Pricing</div>
     <h2>Start free, upgrade when you need more</h2>
     <p>No commitment. Self-serve. Cancel anytime.</p>
+    <p class="pricing-story">Made for the freelancer who sells with demos: pin each project to its own <strong>private domain</strong>, invite your client's device into your mesh, and they open the demo themselves — no VPN setup, no public exposure. Five projects in parallel on Free; when the clients multiply, Plus is an obvious cost of doing business.</p>
     <div class="pricing-grid">
       <div class="plan">
         <div class="plan-name">F0 Free</div>
-        <div class="plan-price">$0 <span>/ month</span></div>
-        <div class="plan-desc">For individual developers and small projects.</div>
+        <div class="plan-price">$0 <span>— free forever</span></div>
+        <div class="plan-desc">Full sovereignty from $0 — for individuals and their projects.</div>
         <ul>
-          <li>Up to 5 nodes in your mesh</li>
-          <li>Secretless deploy from CI + signed receipt</li>
-          <li>1 subdomain (*.ankayma.net)</li>
-          <li>HTTP/HTTPS tunneling</li>
+          <li>10 nodes — yours + your clients' viewers</li>
+          <li>5 private domains</li>
+          <li>Secretless CI deploy + signed receipt</li>
+          <li>"Prove it" — the real peer-to-peer path</li>
           <li>WireGuard P2P encryption</li>
           <li>Open-source agent</li>
-          <li class="dim">Multiple subdomains</li>
-          <li class="dim">Raw TCP tunneling</li>
-          <li class="dim">DLP (PII/payment card detection)</li>
+          <li class="dim">More scale, raw TCP, second lock → Plus</li>
         </ul>
         <a class="btn btn-outline" href="#download" style="width:100%; justify-content:center;">Get started free</a>
       </div>
-      <div class="plan featured">
+      <div class="plan">
         <div class="plan-name">F0-Plus</div>
-        <div class="plan-price">$9 <span>/ month</span></div>
-        <div class="plan-desc">For developers who need more bandwidth and features.</div>
+        <div class="plan-price">$9 <span>/ mo · $99 / yr</span></div>
+        <div class="plan-desc">For the independent pro who runs their business on the mesh.</div>
         <ul>
           <li>Everything in Free</li>
-          <li>10× bandwidth quota</li>
-          <li>Multiple subdomains</li>
+          <li>50 nodes in your mesh</li>
+          <li>20 private domains</li>
           <li>Raw TCP tunneling</li>
-          <li>DLP basic (PII + payment card)</li>
-          <li>Existing keys continue — no re-enrollment</li>
+          <li><strong>Step-up</strong> TOTP — YubiKey optional</li>
+          <li>Keep your keys — no re-enrollment</li>
         </ul>
-        <a class="btn btn-primary" href="#download" style="width:100%; justify-content:center;">Start free, upgrade in-app</a>
+        <a class="btn btn-primary" href="https://ankayma.lemonsqueezy.com/buy/F0PLUS-MONTHLY-REPLACE" style="width:100%; justify-content:center;">Buy now — $9/mo →</a>
+        <p class="plan-alt"><a href="https://ankayma.lemonsqueezy.com/buy/F0PLUS-YEARLY-REPLACE">or $99/year — 2 months free</a></p>
+      </div>
+      <div class="plan featured">
+        <div class="plan-head">
+          <div class="plan-name">F1 Team</div>
+          <div class="team-selector" role="group" aria-label="Team size">
+            <button type="button" class="ts-btn active" data-n="3" data-mo="19" data-yr="199" data-admins="1 admin included">3</button>
+            <button type="button" class="ts-btn" data-n="5" data-mo="29" data-yr="299" data-admins="1 admin included">5</button>
+            <button type="button" class="ts-btn" data-n="10" data-mo="49" data-yr="499" data-admins="2 admins included">10</button>
+            <button type="button" class="ts-btn" data-n="25" data-mo="99" data-yr="999" data-admins="3 admins included">25</button>
+          </div>
+        </div>
+        <div class="plan-price" id="f1-price">$19 <span>/ mo · $199 / yr</span></div>
+        <div class="plan-desc">One flat price for the whole team — about $4 per person at any size.</div>
+        <ul>
+          <li>One mesh — Admin, Builder, User roles</li>
+          <li>Invite &amp; remove — offboard in one click</li>
+          <li id="f1-admins">1 admin included · +$9/extra admin</li>
+          <li>Node &amp; domain quotas per role</li>
+          <li>Policy engine + team relay</li>
+          <li class="dim">&gt;25 people → per-seat, talk to us</li>
+        </ul>
+        <a class="btn btn-primary" id="f1-buy" href="https://ankayma.lemonsqueezy.com/buy/F1-3-MONTHLY-REPLACE" style="width:100%; justify-content:center;">Buy F1-3 — $19/mo →</a>
+        <p class="plan-alt"><a id="f1-buy-yr" href="https://ankayma.lemonsqueezy.com/buy/F1-3-YEARLY-REPLACE">or $199/year</a> · <a href="mailto:hello@ankayma.com?subject=Ankayma%20F1%20Team&amp;body=Team%20size%3A%0AWhat%20you%20need%3A%0A">talk to us</a></p>
       </div>
     </div>
+    <p class="pricing-note">Caps are soft — anti-abuse, not conversion walls. Need more scale → <strong>Plus</strong>. Invite your first member → <strong>F1 Team</strong>: you become the Admin, and your $9 doesn't change.</p>
+    <script>
+      document.querySelectorAll('.team-selector .ts-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.team-selector .ts-btn').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          var n = btn.dataset.n;
+          document.getElementById('f1-price').innerHTML = '$' + btn.dataset.mo + ' <span>/ mo · $' + btn.dataset.yr + ' / yr</span>';
+          document.getElementById('f1-admins').textContent = btn.dataset.admins + ' · +$9/extra admin';
+          var buy = document.getElementById('f1-buy');
+          buy.textContent = 'Buy F1-' + n + ' — $' + btn.dataset.mo + '/mo →';
+          buy.href = 'https://ankayma.lemonsqueezy.com/buy/F1-' + n + '-MONTHLY-REPLACE';
+          var buyYr = document.getElementById('f1-buy-yr');
+          buyYr.textContent = 'or $' + btn.dataset.yr + '/year';
+          buyYr.href = 'https://ankayma.lemonsqueezy.com/buy/F1-' + n + '-YEARLY-REPLACE';
+        });
+      });
+    </script>
     <!-- ENTERPRISE — design-partner surface (Phase 1: demand-sensing, NOT GA) -->
     <div id="enterprise" style="margin-top:28px; padding:28px; border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:var(--radius); background:color-mix(in srgb, var(--accent) 6%, var(--surface));">
       <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
@@ -229,7 +263,7 @@
         <span class="badge" style="margin:0;">Design partners · early access</span>
       </div>
       <h3 style="font-size:20px; font-weight:800; letter-spacing:-0.3px; margin-bottom:8px;">Sovereign isolation for regulated teams</h3>
-      <p style="font-size:14px; color:var(--dim); max-width:580px; margin-bottom:18px;">
+      <p style="font-size:14px; color:var(--dim); max-width:860px; margin-bottom:18px;">
         Dedicated infrastructure, your own tenant CA, and identity you fully custody — so your provider
         <strong style="color:var(--text);">can't decrypt your traffic, and you can prove it.</strong>
         We're onboarding a small group of design partners now — it's not generally available yet.
@@ -260,7 +294,7 @@
     </div>
 
     <h3 style="font-size:18px; font-weight:700; margin-bottom:20px;">Download</h3>
-    <div class="features-grid" style="max-width:640px;">
+    <div class="features-grid">
       <div class="feat" style="display:flex; align-items:center; gap:12px; padding:16px 20px;">
         <span style="font-size:28px;">📱</span>
         <div>
@@ -290,15 +324,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- CTA BOTTOM -->
-<section class="cta-bottom">
-  <div class="wrap">
-    <h2>Start in under 5 minutes</h2>
-    <p>Free forever for personal use. No credit card required.</p>
-    <a class="btn btn-primary" href="#download" style="font-size:16px; padding:14px 32px;">Download free →</a>
   </div>
 </section>
 

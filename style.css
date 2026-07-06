@@ -11,7 +11,7 @@
   --success: #22c55e;
   --warn: #f59e0b;
   --radius: 12px;
-  --max: 960px;
+  --max: 1120px;
 }
 
 body {
@@ -70,9 +70,23 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 
 /* HERO */
 .hero {
-  padding: 96px 0 80px;
+  padding: 80px 0 56px;
   text-align: center;
 }
+
+/* TAB SHOT — real app screenshot inside a wow tab */
+.tab-shot { margin: 0; }
+.tab-shot img {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.tab-shot figcaption { font-size: 12px; color: var(--dim); margin-top: 8px; }
+.wow-split { margin-bottom: 20px; }
+.wow-split .wow-steps { margin-bottom: 0; }
 .badge {
   display: inline-block;
   padding: 4px 12px;
@@ -155,7 +169,7 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 .section > .wrap > p {
   color: var(--dim);
   font-size: 17px;
-  max-width: 560px;
+  max-width: 860px;
   margin-bottom: 48px;
 }
 
@@ -244,13 +258,56 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 .prove-icon { color: var(--success); flex-shrink: 0; margin-top: 2px; }
 .prove-callout strong { display: block; margin-bottom: 4px; }
 .prove-callout p { font-size: 14px; color: var(--dim); margin: 0; }
-.honest-note { font-size: 13px; color: var(--dim); margin-top: 20px; max-width: 680px; }
+.honest-note { font-size: 13px; color: var(--dim); margin-top: 20px; }
+.section > .wrap > p.honest-note { max-width: none; margin-bottom: 0; font-size: 14px; }
 .honest-note strong { color: var(--text); }
+
+/* COEXISTENCE STRIP (A-1) */
+.coexist-strip {
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+.coexist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 36px;
+  align-items: center;
+}
+.coexist-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.coexist-sub { font-size: 14px; color: var(--dim); line-height: 1.6; }
+.path-card p strong { color: var(--text); }
+@media (max-width: 880px) {
+  .coexist-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+.coexist-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.path-card {
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+.path-card.secured {
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+}
+.path-tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+  color: var(--dim);
+}
+.path-card.secured .path-tag { color: var(--accent); }
+.path-card p { font-size: 13px; color: var(--dim); margin: 0; }
 
 /* FEATURES */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 16px;
 }
 .feat {
@@ -263,12 +320,176 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 .feat strong { display: block; font-size: 15px; margin-bottom: 6px; }
 .feat p { font-size: 13px; color: var(--dim); line-height: 1.6; }
 
+/* WOW TABS — the 3 five-minute experiences, each closing in proof */
+.wow-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.wow-tab {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px 10px 0 0;
+  background: transparent;
+  color: var(--dim);
+  cursor: pointer;
+}
+.wow-tab:hover { color: var(--text); border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.wow-tab.active {
+  color: var(--text);
+  background: var(--surface);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-bottom-color: var(--surface);
+}
+.wow-panel {
+  display: none;
+  padding: 28px 24px;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+  border-radius: var(--radius);
+}
+.wow-panel.active { display: block; }
+.wow-pitch { font-size: 15px; color: var(--text); margin-bottom: 20px; max-width: 860px; }
+.wow-steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; max-width: 680px; }
+.wstep {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.6;
+}
+.wstep code {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.9em;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 5px;
+  color: var(--accent);
+  word-break: break-word;
+}
+.wstep-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.wstep-time {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 99px;
+  padding: 1px 8px;
+  white-space: nowrap;
+}
+.wow-panel .wow-proof {
+  font-size: 13px;
+  color: var(--text);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+.wow-panel .wow-tiers { font-size: 12px; color: var(--dim); }
+.badge-sm {
+  font-size: 10px;
+  padding: 2px 8px;
+  margin: 0 0 0 6px;
+  vertical-align: middle;
+}
+.under-hood {
+  margin-top: 20px;
+  padding: 14px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.uh-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--dim);
+  flex-shrink: 0;
+}
+.uh-items { font-size: 13px; color: var(--dim); }
+
+.pricing-note {
+  font-size: 13px;
+  color: var(--dim);
+  margin-top: 16px;
+  max-width: 860px;
+}
+.pricing-note strong { color: var(--text); }
+
 /* PRICING */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
-  max-width: 720px;
+  max-width: 1080px;
+}
+.pricing-story {
+  font-size: 14px;
+  color: var(--dim);
+  margin: -8px 0 24px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.pricing-story strong { color: var(--text); }
+.section > .wrap > p.pricing-story { max-width: none; }
+.plan-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.plan-head .plan-name { margin-bottom: 0; }
+.team-selector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ts-btn {
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.ts-btn:hover { border-color: var(--accent); }
+.plan-alt { font-size: 12px; color: var(--dim); margin-top: 10px; text-align: center; }
+.plan-alt a { color: var(--dim); text-decoration: underline; }
+.plan-alt a:hover { color: var(--text); }
+.ts-btn.active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 15%, var(--surface));
+  color: var(--accent);
 }
 .plan {
   padding: 28px;

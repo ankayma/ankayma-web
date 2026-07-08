@@ -40,13 +40,14 @@
   </div>
 </nav>
 
-<div class="page-hero">
+<div class="page-hero" style="margin-bottom:0;">
   <div class="wrap">
     <h1>NoSecret — CI/CD with no static secret to leak.</h1>
     <p>Every run gets its own identity — scoped to the deploy, alive for minutes, gone after the run — and leaves a signed receipt you hold.</p>
   </div>
 </div>
 
+<section class="section band">
 <div class="wrap">
   <div class="prose prose-wide">
 
@@ -97,12 +98,27 @@
         <div class="pcard-proof"><b>Evidence</b>AI-service leaks up 81% year over year; AI-assisted commits leak secrets at twice the baseline rate (<a href="https://www.helpnetsecurity.com/2026/03/27/gitguardian-exposed-credentials-risk-report/" target="_blank" rel="noopener">Help Net Security</a>).</div>
       </div>
     </div>
+  </div>
+</div>
+</section>
+
+<section class="section band-alt">
+<div class="wrap">
+  <div class="prose prose-wide">
 
     <div class="prose-col">
     <h2>How a deploy works with nothing to steal</h2>
     <p>You set the rule once, from your own device: <em>this repo, this branch, deploys to this box.</em> On push, your CI job mints a short-lived OIDC token — scoped, deploy-only, expiring in minutes, with nothing static stored in CI. The deploy travels over your mesh, straight to the target, and the signed run-receipt lands in your tamper-evident ledger: run, repo, ref, scope, and the fact that the vendor was never on the data path.</p>
     <p>A well-guarded secret is still a secret that can be taken. No secret is a different category of answer — and the receipt means your auditor reads a ledger instead of trusting a promise. The long version of this argument is on the blog: <a href="/blog/your-ci-deploy-secret-will-leak/">Your CI deploy secret will leak →</a></p>
     <p>Five minutes from install to your first signed receipt — <a href="/#how">the walkthrough is on the front page</a>.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section band">
+<div class="wrap">
+  <div class="prose prose-wide">
 
     <div class="selfcheck" data-min="2">
       <p class="sc-lead">Does this sound like your pipeline?</p>
@@ -130,10 +146,10 @@
       <a class="btn btn-primary" href="/#download">Download — it's free</a>
       <a class="btn btn-outline" href="/#how">See the 5-minute walkthrough</a>
     </div>
-    </div>
 
   </div>
 </div>
+</section>
 
 <footer>
   <div class="inner">

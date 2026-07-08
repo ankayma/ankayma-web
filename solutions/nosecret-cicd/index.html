@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoSecret — CI/CD without static secrets — Ankayma</title>
+  <meta name="description" content="Every CI run gets its own identity — scoped, minutes-long, gone after the run — and leaves a signed receipt you hold. No static secret in the pipeline means nothing for a leak to find." />
+  <link rel="canonical" href="https://ankayma.com/solutions/nosecret-cicd/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="NoSecret — CI/CD without static secrets" />
+  <meta property="og:description" content="No static secret to leak: per-run ephemeral identity, scoped and time-limited, with a signed receipt for every deploy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ankayma.com/solutions/nosecret-cicd/" />
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> — SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> — internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> — access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> — identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>NoSecret — CI/CD with no static secret to leak.</h1>
+    <p>Every run gets its own identity — scoped to the deploy, alive for minutes, gone after the run — and leaves a signed receipt you hold.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose prose-wide">
+
+    <div class="prose-col">
+    <p>Almost every pipeline, given enough time, accumulates a long-lived deploy secret: an SSH key, a cloud key, a kubeconfig, parked in CI so the deploy step can reach production. It's convenient. It's also what leaks.</p>
+    </div>
+
+    <div class="flowdiag" aria-hidden="true">
+      <div class="flow-row flow-old">
+        <span class="flow-label">Today</span>
+        <span class="flow-node">Static secret in CI</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Never expires</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Leaks &amp; keeps working</span>
+        <span class="flow-note">28M+ secrets leaked in 2025</span>
+      </div>
+      <div class="flow-row flow-new">
+        <span class="flow-label">Ankayma</span>
+        <span class="flow-node">Per-run identity</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Scoped · minutes</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Signed receipt in ledger</span>
+        <span class="flow-note">nothing static to steal</span>
+      </div>
+    </div>
+
+    <div class="pain-cards grid-4">
+      <div class="pcard">
+        <div class="pcard-problem">Secrets leak at industrial scale.</div>
+        <div class="pcard-answer">No static secret exists to leak. Each CI run receives an ephemeral identity minted for that run.</div>
+        <div class="pcard-proof"><b>Evidence</b>28.65 million new secrets exposed on public GitHub in 2025 — up 34% in a year, the largest jump ever measured (<a href="https://www.gitguardian.com/state-of-secrets-sprawl-report-2026" target="_blank" rel="noopener">GitGuardian 2026</a>).</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">The CI runner is the primary target.</div>
+        <div class="pcard-answer">The runner holds nothing worth stealing — and every run leaves a signed receipt: which run, which repo, which deploy scope.</div>
+        <div class="pcard-proof"><b>Evidence</b>59% of compromised machines are CI/CD runners, not personal laptops (<a href="https://thehackernews.com/2026/03/the-state-of-secrets-sprawl-2026-9.html" target="_blank" rel="noopener">The Hacker News</a>).</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">Leaked secrets live for years.</div>
+        <div class="pcard-answer">Per-run identity expires by design — in minutes, not on the day someone remembers to rotate.</div>
+        <div class="pcard-proof"><b>Evidence</b>Of credentials leaked in 2022, 64% still worked when retested in early 2026 (<a href="https://www.gitguardian.com/state-of-secrets-sprawl-report-2026" target="_blank" rel="noopener">GitGuardian</a>).</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">AI is accelerating the wrong side.</div>
+        <div class="pcard-answer">The same mechanism — scoped, expiring identity — extends to agents and AI scripts. That part opens when the connector ships; it's on the roadmap, not in today's offer.</div>
+        <div class="pcard-proof"><b>Evidence</b>AI-service leaks up 81% year over year; AI-assisted commits leak secrets at twice the baseline rate (<a href="https://www.helpnetsecurity.com/2026/03/27/gitguardian-exposed-credentials-risk-report/" target="_blank" rel="noopener">Help Net Security</a>).</div>
+      </div>
+    </div>
+
+    <div class="prose-col">
+    <h2>How a deploy works with nothing to steal</h2>
+    <p>You set the rule once, from your own device: <em>this repo, this branch, deploys to this box.</em> On push, your CI job mints a short-lived OIDC token — scoped, deploy-only, expiring in minutes, with nothing static stored in CI. The deploy travels over your mesh, straight to the target, and the signed run-receipt lands in your tamper-evident ledger: run, repo, ref, scope, and the fact that the vendor was never on the data path.</p>
+    <p>A well-guarded secret is still a secret that can be taken. No secret is a different category of answer — and the receipt means your auditor reads a ledger instead of trusting a promise. The long version of this argument is on the blog: <a href="/blog/your-ci-deploy-secret-will-leak/">Your CI deploy secret will leak →</a></p>
+    <p>Five minutes from install to your first signed receipt — <a href="/#how">the walkthrough is on the front page</a>.</p>
+
+    <div class="selfcheck" data-min="2">
+      <p class="sc-lead">Does this sound like your pipeline?</p>
+      <p class="sc-sub">Tick what's true. Nothing is sent — this is for you.</p>
+      <ul class="sc-list">
+        <li><label><input type="checkbox" /> We keep a long-lived deploy secret parked in CI so it can reach prod.</label></li>
+        <li><label><input type="checkbox" /> If that secret leaked, I couldn't quickly list everything it can touch.</label></li>
+        <li><label><input type="checkbox" /> We don't rotate CI secrets on any real schedule.</label></li>
+        <li><label><input type="checkbox" /> "What deployed to prod last month, and who authorized it" would mean digging.</label></li>
+      </ul>
+      <div class="sc-result">
+        <p><strong>That's the door.</strong> Wire one repo to a signed, secretless deploy in five minutes — free.</p>
+        <a class="btn btn-primary" href="/#download">Download free</a>
+      </div>
+    </div>
+
+    <h2>Is NoSecret the right choice for you?</h2>
+    <p><strong>Reach for us when</strong> you deploy to your own infrastructure — VPS, on-prem, mixed cloud — and want the runner to hold nothing worth stealing, with a signed receipt per deploy that your auditor can read instead of trusting a promise.</p>
+    <p><strong>Reach for someone else when</strong> you're entirely inside one cloud whose native OIDC-to-deploy already covers you end to end. And the agent / AI-script extension of this is on the roadmap, not in today's offer — we won't sell it as shipped.</p>
+    <p class="honest-note" style="margin-top:16px;">One choice among several — this page exists so you can tell which one you're looking at.</p>
+
+    <p class="honest-note" style="margin-top:24px;">We publish what this doesn't do yet, in plain words: <a href="/honest-limits.html">our honest limits →</a></p>
+
+    <div class="hero-actions" style="margin-top:24px;">
+      <a class="btn btn-primary" href="/#download">Download — it's free</a>
+      <a class="btn btn-outline" href="/#how">See the 5-minute walkthrough</a>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma. Built in public.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.selfcheck').forEach(function (box) {
+  var min = parseInt(box.dataset.min || '2', 10);
+  var result = box.querySelector('.sc-result');
+  box.addEventListener('change', function () {
+    var n = box.querySelectorAll('input:checked').length;
+    result.classList.toggle('on', n >= min);
+  });
+});
+</script>
+
+</body>
+</html>

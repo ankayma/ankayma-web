@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoKey — SSH without static keys — Ankayma</title>
+  <meta name="description" content="Reach production over SSH with no static key and no bastion. Engineers connect by device identity; root is a signed grant that expires in minutes; every session lands in a ledger. Works from a laptop — and from your phone." />
+  <link rel="canonical" href="https://ankayma.com/solutions/nokey/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="NoKey — SSH without static keys" />
+  <meta property="og:description" content="No static key, no bastion, no public port. Device identity in, root as a grant that expires in minutes, every session in the ledger. Even from your phone." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ankayma.com/solutions/nokey/" />
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> — SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> — internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> — access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> — identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>NoKey — SSH without static keys.</h1>
+    <p>Reach a production machine with no static key and no bastion. Engineers connect by device identity, root is a signed grant that expires in minutes, and every session lands in a ledger — from a laptop, or from the phone in your pocket.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose prose-wide">
+
+    <div class="prose-col">
+      <p>A static SSH key is a mechanical key cut in dozens of copies and handed out over the years. Nobody remembers who holds which copy, to which door. The copies don't expire, and they don't leave when the person does.</p>
+    </div>
+
+    <div class="flowdiag" aria-hidden="true">
+      <div class="flow-row flow-old">
+        <span class="flow-label">Today</span>
+        <span class="flow-node">Static SSH key</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Copied across machines</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Never revoked</span>
+        <span class="flow-note">orphan root keys everywhere</span>
+      </div>
+      <div class="flow-row flow-new">
+        <span class="flow-label">Ankayma</span>
+        <span class="flow-node">Device identity</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Root grant ≤ 15 min</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Auto-drops + logged</span>
+        <span class="flow-note">no bastion, no open port</span>
+      </div>
+    </div>
+
+    <div class="pain-cards">
+      <div class="pcard">
+        <div class="pcard-problem">Key sprawl nobody can map.</div>
+        <div class="pcard-answer">No key to sprawl. Engineers reach machines by device identity — there is nothing to copy, store, or lose track of.</div>
+        <div class="pcard-proof"><b>Evidence</b>The average organization holds ~23,000 SSH keys and 90% are unmanaged (<a href="https://www.computerworld.com/article/1610856/poorly-managed-ssh-keys-pose-serious-risks-for-most-companies.html" target="_blank" rel="noopener">Ponemon / Venafi</a> — magnitudes hold across surveys).</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">Keys never rotate, and never leave.</div>
+        <div class="pcard-answer">Offboarding a person is revoking one identity. No key hunt, no orphans left behind on the fleet.</div>
+        <div class="pcard-proof"><b>Evidence</b>46% of organizations never rotate keys; on average every server carries one orphan root key of someone already gone (<a href="https://www.businesswire.com/news/home/20210128005138/en/Venafi-Study-CIOs-Massively-Underestimate-SSH-Risks" target="_blank" rel="noopener">Venafi</a>).</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">The bastion is a public door.</div>
+        <div class="pcard-answer">The SSH server binds inside the overlay — no port on the internet, no bastion, and it never touches your existing sshd.</div>
+        <div class="pcard-proof"><b>Evidence</b>A jump host listening on the internet is one more appliance to patch and one more thing to scan.</div>
+      </div>
+    </div>
+
+    <div class="selfcheck" data-min="2">
+      <p class="sc-lead">Does this sound like your fleet?</p>
+      <p class="sc-sub">Tick what's true. No sign-up, nothing sent — just for you.</p>
+      <ul class="sc-list">
+        <li><label><input type="checkbox" /> I'm not sure how many SSH keys are still live, or which key sits on which machine.</label></li>
+        <li><label><input type="checkbox" /> Someone left and I can't say for certain their access is fully gone.</label></li>
+        <li><label><input type="checkbox" /> There was a 2 a.m. moment I needed into a box and didn't have my laptop.</label></li>
+        <li><label><input type="checkbox" /> If an auditor asked "who did what on this server," I'd be stitching logs together by hand.</label></li>
+      </ul>
+      <div class="sc-result">
+        <p><strong>That's the door.</strong> Try it on one machine in five minutes — free, no account beyond GitHub sign-in.</p>
+        <a class="btn btn-primary" href="/#download">Download free</a>
+      </div>
+    </div>
+
+    <div class="prose-col">
+      <h2>How it works, in one paragraph</h2>
+      <p>NoKey swaps the static key for a door that opens on the <strong>person plus a badge that expires</strong>. Engineers reach machines by device identity — the enrolled device is the credential, not a file on disk. A normal user account is provisioned for you automatically; <strong>root is a signed grant that lives at most fifteen minutes and falls away on its own</strong>, each elevation logged per operation. Every session start lands in your ledger. The SSH server binds inside the overlay, so there's no port on the internet and no bastion to run — and it never touches your existing sshd. Fifteen minutes isn't an exotic number: the industry's short-lived credentials already speak in minutes — Cloudflare mints 3-minute SSH certificates, EC2 Instance Connect keys live 60 seconds. And because the client is an engine rather than a wrapper around system SSH, it runs where a static key never could — <strong>including an iPhone</strong>.</p>
+    </div>
+
+    <div class="prose-col">
+      <h2>Is NoKey the right choice for you?</h2>
+      <p><strong>Reach for us when</strong> you run your own machines — VPS, on-prem, mixed cloud — and want engineers on them without a bastion, a public port, or a key file to manage; when mobile access matters; and when you'd rather the connection go straight between you and the box than route through a vendor.</p>
+      <p><strong>Reach for someone else when</strong> your requirement is full session <em>recording</em> as a first-class, tamper-evident audit product — that's a different tool's home turf, and we won't pretend a ledger of session starts is the same thing. Same if a funded PAM program already covers privileged access across your estate. We list what NoKey doesn't do yet on <a href="/honest-limits.html">honest limits</a>.</p>
+      <p class="honest-note" style="margin-top:16px;">One choice among several — this page exists so you can tell which one you're looking at.</p>
+    </div>
+
+    <div class="prose-col">
+      <h2>In the same mesh</h2>
+      <p>The other public door most teams keep open is the VPN — internal apps behind a gateway attackers scan for. <a href="/solutions/novpn/">NoVPN</a> gives those apps private names instead. And the machine that deploys to prod carries its own static secret; <a href="/solutions/nosecret-cicd/">NoSecret</a> removes that one. Same mesh, same shape.</p>
+    </div>
+
+    <div class="hero-actions" style="margin-top:24px;">
+      <a class="btn btn-primary" href="/#download">Download — it's free</a>
+      <a class="btn btn-outline" href="/#how">See how it works</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma. Built in public.</span>
+    <ul>
+      <li><a href="/solutions/">Solutions</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.selfcheck').forEach(function (box) {
+  var min = parseInt(box.dataset.min || '2', 10);
+  var result = box.querySelector('.sc-result');
+  box.addEventListener('change', function () {
+    var n = box.querySelectorAll('input:checked').length;
+    result.classList.toggle('on', n >= min);
+  });
+});
+</script>
+
+</body>
+</html>

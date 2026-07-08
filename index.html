@@ -14,13 +14,22 @@
   <div class="inner">
     <a class="logo" href="/">An<span>kayma</span></a>
     <ul>
-      <li><a href="#how">How it works</a></li>
+      <li><a href="#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> — SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> — internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> — access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> — identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#enterprise">Enterprise</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
     </ul>
-    <a class="btn btn-primary" href="#download">Download free</a>
   </div>
 </nav>
 
@@ -239,6 +248,7 @@
       </div>
     </div>
     <p class="pricing-note">Caps are soft — anti-abuse, not conversion walls. Need more scale → <strong>Plus</strong>. Invite your first member → <strong>F1 Team</strong>: you become the Admin, and your $9 doesn't change.</p>
+    <p class="pricing-note">Running a field force — agents, franchise staff, shared devices? That's a different shape of problem: <a href="/solutions/nopass/">NoPass — access without passwords →</a></p>
     <script>
       document.querySelectorAll('.team-selector .ts-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -273,9 +283,60 @@
         <a class="btn btn-outline" href="mailto:hello@ankayma.com?subject=Ankayma%20Enterprise%20%E2%80%94%20question">Talk to us</a>
       </div>
       <p style="font-size:12px; color:var(--dim); margin-top:14px;">
-        Tell us your use case — we prioritise design partners with concrete compliance or isolation needs.
+        Tell us your use case — we prioritise design partners with concrete compliance or isolation needs. <a href="/enterprise/">See the full Enterprise page →</a>
       </p>
     </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS — teaser cards (spokes; SSOT: solutions-catalog) -->
+<section class="section" id="solutions">
+  <div class="wrap">
+    <div class="section-label">Solutions</div>
+    <h2>Remove the credential. Keep the proof.</h2>
+    <p>Each solution retires one kind of static credential — replaced by identity bound to the device, with an expiry and a ledger entry. Five doors, one mesh, two ways in. One honest choice among several, not the answer.</p>
+
+    <h3 class="grouphead"><span class="st st-path1">Path 1</span> You run the machines — bottom-up</h3>
+    <p class="group-sub">An engineer, a repo, an agent of your own. Mostly live and self-serve — start where it bites.</p>
+    <div class="features-grid">
+      <a class="feat sol-card" href="/solutions/nosecret-cicd/">
+        <div class="sol-q">Which machine may touch prod?</div>
+        <strong>NoSecret — CI/CD without static secrets</strong>
+        <p>Every run gets a minutes-long identity and leaves a signed receipt — which run, which repo, which scope. Nothing static for a leak to find.</p>
+        <span class="sol-go">Read more →</span>
+      </a>
+      <a class="feat sol-card" href="/solutions/nokey/">
+        <div class="sol-q">How does an engineer reach a machine?</div>
+        <strong>NoKey — SSH without static keys</strong>
+        <p>No static key, no bastion, no public port. Device identity in, root as a grant that expires in minutes, every session in your ledger. Even from your phone.</p>
+        <span class="sol-go">Read more →</span>
+      </a>
+      <a class="feat sol-card" href="/solutions/nhi-agents/">
+        <div class="sol-q">What may a non-human actor touch?</div>
+        <strong>NoAPIKey — identity for AI agents &amp; scripts</strong>
+        <p>Scoped, expiring identity for a script or an AI agent — an actor in your ledger, zero secret left behind. An early, honest take on the coming wave.</p>
+        <span class="sol-go">Read more →</span>
+      </a>
+    </div>
+
+    <h3 class="grouphead"><span class="st st-path2">Path 2</span> You own the risk across the org — top-down</h3>
+    <p class="group-sub">The budget-owner's view: the network, and identity across the whole organization.</p>
+    <div class="features-grid">
+      <a class="feat sol-card" href="/solutions/novpn/">
+        <div class="sol-q">Where do services live?</div>
+        <strong>NoVPN — internal apps without a VPN</strong>
+        <p>Services carry private names only your mesh resolves. No public gateway to exploit, no flat network to cross, no vendor cloud on the path.</p>
+        <span class="sol-go">Read more →</span>
+      </a>
+      <a class="feat sol-card" href="/solutions/nopass/">
+        <div class="sol-q">Who gets in?</div>
+        <strong>NoPass — access without passwords</strong>
+        <p>The enrolled device is the key: nothing to steal, share, or reset. Offboarding is revoking one identity — built for field forces and frontline teams.</p>
+        <span class="sol-go">Read more →</span>
+      </a>
+    </div>
+
+    <p style="margin-top:28px;"><a href="/solutions/">See the five-door map — and where to start →</a></p>
   </div>
 </section>
 
@@ -327,10 +388,26 @@
   </div>
 </section>
 
+<!-- REFERRAL — user-level, credit only (public copy: no commission/earn wording) -->
+<section class="section" id="refer" style="border-top:1px solid var(--border);">
+  <div class="wrap">
+    <div class="section-label">Refer a friend</div>
+    <h2>Know someone who needs this?</h2>
+    <p>Send a peer your link. When they actually get going, you both get extra months on us — the more of your team and community run sovereign, the stronger everyone's mesh. No cash, no catch, no selling.</p>
+    <div class="hero-actions" style="margin-top:8px; justify-content:flex-start;">
+      <a class="btn btn-primary" href="mailto:hello@ankayma.com?subject=Ankayma%20referral%20link&amp;body=My%20account%20email%3A%0AWho%20I%27d%20refer%20(optional)%3A%0A">Get your referral link</a>
+      <a class="btn btn-outline" href="/partners/">Want to help more? See partner lanes →</a>
+    </div>
+    <p class="honest-note" style="margin-top:14px;">Rewards are account credit (extra months), granted as we go while we finish the self-serve version. Actively selling to customers is a different lane — that's <a href="/partners/">Partners</a>.</p>
+  </div>
+</section>
+
 <footer>
   <div class="inner">
     <span>© 2026 Ankayma. Built in public.</span>
     <ul>
+      <li><a href="/solutions/">Solutions</a></li>
+      <li><a href="/partners/">Partners</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="honest-limits.html">Honest limits</a></li>
       <li><a href="privacy.html">Privacy</a></li>

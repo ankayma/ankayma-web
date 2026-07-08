@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoAPIKey — identity for AI agents &amp; scripts — Ankayma</title>
+  <meta name="description" content="Scripts and AI agents already touch production, authenticating with API keys that never expire and leave no trace. NoAPIKey gives a non-human actor a scoped, short-lived identity that shows up in the ledger. An early, honest take on a problem no one has solved — tell us where we're wrong." />
+  <link rel="canonical" href="https://ankayma.com/solutions/nhi-agents/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="NoAPIKey — identity for AI agents & scripts" />
+  <meta property="og:description" content="The non-human wave: agents and scripts touching prod with keys that never expire. A scoped, short-lived, logged identity instead — an early, honest take. Critique welcome." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ankayma.com/solutions/nhi-agents/" />
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> — SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> — internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> — access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> — identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>NoAPIKey — identity for the non-human.</h1>
+    <p>Scripts and AI agents already touch your production data. They authenticate with keys that never expire, that nobody fully inventories, and that leave no trace of what they touched. This is an early, honest take on a problem the whole industry is still squinting at — not a finished answer.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose prose-wide">
+
+    <div class="prose-col">
+      <p>Every team is wiring AI into its stack this year. Underneath the demos, a quieter thing is happening: the number of <strong>non-human actors</strong> — cron jobs, CI pipelines, internal scripts, and now autonomous agents — reaching into production is climbing fast. Each one needs to authenticate, and today that almost always means a long-lived API key or token.</p>
+      <p>Those keys are the same failure shape as every other static credential, only worse: they rarely expire, they're copied into config and prompts and notebooks, and when one leaks you often can't say what it touched. The question a CISO can already feel coming — <em>"which agent read customer X's data last week?"</em> — mostly has no answer yet.</p>
+    </div>
+
+    <div class="flowdiag" aria-hidden="true">
+      <div class="flow-row flow-old">
+        <span class="flow-label">Today</span>
+        <span class="flow-node">Static API key</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Never expires</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Anonymous, no trace</span>
+        <span class="flow-note">"which agent read what?"</span>
+      </div>
+      <div class="flow-row flow-new">
+        <span class="flow-label">Ankayma</span>
+        <span class="flow-node">Per-run identity</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Scoped &amp; short-lived</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Actor in the ledger</span>
+        <span class="flow-note">zero secret left behind</span>
+      </div>
+    </div>
+
+    <div class="pain-cards">
+      <div class="pcard">
+        <div class="pcard-problem">Keys that never expire, for actors that multiply.</div>
+        <div class="pcard-answer">A per-run identity that is scoped and short-lived — nothing static to leak, nothing to rotate.</div>
+        <div class="pcard-proof"><b>Why now</b>AI adoption is minting non-human identities faster than anyone is governing them.</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">No trace of what a machine touched.</div>
+        <div class="pcard-answer">The actor shows up in the ledger by identity — you can see what ran, and reach what it reached.</div>
+        <div class="pcard-proof"><b>Why now</b>An API key is anonymous; a leak is invisible until the damage shows.</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">Secret residue everywhere.</div>
+        <div class="pcard-answer">Zero secret left behind — the identity is minted for the run and gone after it.</div>
+        <div class="pcard-proof"><b>Why now</b>Keys end up in env files, repos, prompts, and third-party tools.</div>
+      </div>
+    </div>
+
+    <div class="ai-panel">
+      <h3>Where this actually is today — no rounding up</h3>
+      <p>We'd rather you know exactly what you're looking at. <strong>The core works:</strong> the command-line flow mints a scoped, short-lived, ledgered identity for a non-human actor, with no static secret — you can see it run. <strong>What's not ready:</strong> the smooth connector that drops this into your existing CI or agent framework (OIDC) is still in progress, not generally available, so plugging it into a real pipeline takes hands-on work with us right now.</p>
+      <p>And a boundary we hold on purpose: NoAPIKey gives an actor an identity and a scope. It is <strong>not</strong> a full non-human-identity governance suite — it doesn't discover and inventory every machine identity across your estate. That's a real category, and it isn't what we're building. If that's your need, we'll say so.</p>
+      <p><strong>This is a design-partner stage, in plain words.</strong> If the problem is live for you, the honest move is to build the first real deployment together.</p>
+    </div>
+
+    <div class="selfcheck" data-min="2">
+      <p class="sc-lead">Is the non-human wave already at your door?</p>
+      <p class="sc-sub">Tick what's true. Nothing is sent — this is for you.</p>
+      <ul class="sc-list">
+        <li><label><input type="checkbox" /> A script, cron, or AI agent touches our production data — and it authenticates with a key that doesn't expire.</label></li>
+        <li><label><input type="checkbox" /> I couldn't tell you, right now, every place those keys live.</label></li>
+        <li><label><input type="checkbox" /> If asked "which agent read what," we'd have no clean answer.</label></li>
+        <li><label><input type="checkbox" /> Our 2026 plans put AI agents onto internal systems, and nobody has clearly owned who approves what they may touch.</label></li>
+      </ul>
+      <div class="sc-result">
+        <p><strong>Then we should talk — as design partners, not as a sale.</strong> And we genuinely want the parts where our take is wrong.</p>
+        <a class="btn btn-primary" href="mailto:hello@ankayma.com?subject=NoAPIKey%20%E2%80%94%20design%20partner%20%2F%20critique&amp;body=My%20role%3A%0AWhat%20scripts%2Fagents%20touch%20our%20prod%20today%3A%0AHow%20they%20authenticate%20now%3A%0AWhat%20worries%20me%20most%3A%0AWhere%20your%20framing%20breaks%20for%20us%3A%0A">Start the conversation →</a>
+      </div>
+    </div>
+
+    <div class="prose-col">
+      <h2>Is NoAPIKey the right choice for you?</h2>
+      <p><strong>Reach for us when</strong> you want the same sovereign primitive for a machine that we give a person — a scoped, expiring, logged identity that keeps the actor off static keys and on your ledger — and you're willing to shape an early product with us on a problem that genuinely isn't settled.</p>
+      <p><strong>Reach for someone else when</strong> you need machine-identity discovery, inventory, and governance across a large estate today, off the shelf — that's a mature category and it isn't us. We'd rather point you there than oversell.</p>
+      <p class="honest-note" style="margin-top:16px;">A choice among several, and an early one — which is exactly why we're asking for your critique instead of your signature. What we don't do yet is on <a href="/honest-limits.html">honest limits</a>.</p>
+    </div>
+
+    <div class="prose-col">
+      <h2>The same primitive, for people too</h2>
+      <p>A non-human actor and a person get identity the same way here — that's the point, not a coincidence. The human doors are further along: <a href="/solutions/nokey/">NoKey</a> for engineers on machines, <a href="/solutions/nosecret-cicd/">NoSecret</a> for CI that deploys. See the whole shape on the <a href="/solutions/">solutions map</a>.</p>
+    </div>
+
+    <div class="hero-actions" style="margin-top:24px;">
+      <a class="btn btn-primary" href="mailto:hello@ankayma.com?subject=NoAPIKey%20%E2%80%94%20design%20partner%20%2F%20critique&amp;body=My%20role%3A%0AWhat%20scripts%2Fagents%20touch%20our%20prod%20today%3A%0AHow%20they%20authenticate%20now%3A%0AWhere%20your%20framing%20breaks%20for%20us%3A%0A">Talk to us — or tell us we're wrong</a>
+      <a class="btn btn-outline" href="/solutions/">Back to the solutions map</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma. Built in public.</span>
+    <ul>
+      <li><a href="/solutions/">Solutions</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.selfcheck').forEach(function (box) {
+  var min = parseInt(box.dataset.min || '2', 10);
+  var result = box.querySelector('.sc-result');
+  box.addEventListener('change', function () {
+    var n = box.querySelectorAll('input:checked').length;
+    result.classList.toggle('on', n >= min);
+  });
+});
+</script>
+
+</body>
+</html>

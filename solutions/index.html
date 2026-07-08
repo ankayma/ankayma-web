@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions — remove every static credential — Ankayma</title>
+  <meta name="description" content="Passwords, VPN access, SSH keys, CI secrets, API keys — five doors, one shape. Each removes a static credential and replaces it with device-bound, expiring, logged identity. One honest choice among many, not the answer." />
+  <link rel="canonical" href="https://ankayma.com/solutions/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Ankayma Solutions — remove every static credential" />
+  <meta property="og:description" content="Five doors, one shape: replace static credentials with device-bound, expiring, logged identity. A choice among many — tell us where we're wrong." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ankayma.com/solutions/" />
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> — SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> — internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> — access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> — identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero" style="margin-bottom:0;">
+  <div class="wrap">
+    <h1>Remove the static credential. Every one of them.</h1>
+    <p>Passwords, VPN access, SSH keys, CI secrets, API keys — five doors, one shape. Each replaces a credential that never expires and nobody fully tracks with an identity that is bound to a device, expires on its own, and lands in a signed ledger.</p>
+  </div>
+</div>
+
+<!-- BAND 1 — intro + two ways in -->
+<section class="section band">
+  <div class="wrap solutions-hub">
+    <div class="hub-lede">
+      <p>These are <strong>five doors into one idea, not five products</strong>. A static credential — a password, a key, a token — is a copy that outlives the reason it was made: nobody remembers who holds it, when it expires, or what it last touched. Every solution below removes one kind, and replaces it with the same thing: device-bound, short-lived, logged identity.</p>
+      <p>We'll say the uncomfortable part plainly: <strong>Ankayma is one choice among several for these problems, not the answer to them.</strong> Where another tool fits your case better, each page below says so. What we're sure of is the shape of the problem — the industry has agreed static credentials are the soft underbelly. Where you go from there is your call.</p>
+    </div>
+
+    <h2 class="hub-h2">Two ways in — and they meet in the middle</h2>
+    <p class="hub-p">People arrive from two directions. Engineers come <strong>bottom-up</strong> — one machine, one repo, five minutes, free. Security and leadership come <strong>top-down</strong> — needing one honest answer for the whole org. They converge in the same mesh: the builder who already adopted it is the reference the CISO was going to ask for anyway.</p>
+
+    <div class="pathmap">
+      <div class="pm-lanes">
+        <div class="pm-lane pm-build">
+          <span class="pm-tag">Path 1 · bottom-up</span>
+          <strong>You run the machines</strong>
+          <span class="pm-desc">An engineer, one server, one repo. Self-serve, free, in five minutes.</span>
+        </div>
+        <div class="pm-lane pm-risk">
+          <span class="pm-tag">Path 2 · top-down</span>
+          <strong>You own the risk</strong>
+          <span class="pm-desc">Security &amp; leadership — the whole "remove every static credential" story, across the org.</span>
+        </div>
+      </div>
+      <div class="pm-merge" aria-hidden="true">
+        <svg viewBox="0 0 84 150" preserveAspectRatio="none" role="img" aria-label="two paths converging into one mesh">
+          <path d="M0 28 C 46 28, 38 75, 84 75" fill="none" stroke="var(--accent)" stroke-width="2" />
+          <path d="M0 122 C 46 122, 38 75, 84 75" fill="none" stroke="var(--accent2)" stroke-width="2" />
+          <circle cx="80" cy="75" r="5" fill="var(--success)" />
+        </svg>
+      </div>
+      <div class="pm-hub">
+        <strong>◈ One sovereign mesh</strong>
+        <span class="pm-desc">Bottom meets top — the same product, entered from either end. The engineer's adoption is the proof leadership trusts.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND 2 — the two path groups -->
+<section class="section band-alt">
+  <div class="wrap solutions-hub">
+    <h3 class="grouphead"><span class="st st-path1">Path 1</span> You run the machines — start here</h3>
+    <p class="group-sub">Where practitioners start — an engineer, a repo, an agent of your own. Most are live and self-serve today; the newest, for AI agents, is early. Pick the one that bites and prove it in minutes.</p>
+    <div class="door-grid">
+      <a class="door" href="/solutions/nosecret-cicd/">
+        <div class="door-q">Which machine may touch production?</div>
+        <div class="door-name">No<span>Secret</span></div>
+        <div class="door-sub">CI/CD that deploys with no static secret. Every run signs a receipt: which run, which repo, which service, deploy-only scope.</div>
+        <div class="door-foot"><span class="door-go">See NoSecret →</span><span class="st st-demo">Beta</span></div>
+      </a>
+      <a class="door" href="/solutions/nokey/">
+        <div class="door-q">How does an engineer reach a machine?</div>
+        <div class="door-name">No<span>Key</span></div>
+        <div class="door-sub">SSH to production with no static key and no bastion. Root is a signed grant that expires in minutes. Works from a laptop — and from your phone.</div>
+        <div class="door-foot"><span class="door-go">See NoKey →</span><span class="st st-live">Live</span></div>
+      </a>
+      <a class="door" href="/solutions/nhi-agents/">
+        <div class="door-q">What may a non-human actor touch?</div>
+        <div class="door-name">No<span>APIKey</span></div>
+        <div class="door-sub">Scoped, expiring identity for a script or an AI agent — it shows up in the ledger as an actor, with zero secret left behind. The wave nobody has a plan for yet.</div>
+        <div class="door-foot"><span class="door-go">See NoAPIKey →</span><span class="st st-early">Early</span></div>
+      </a>
+    </div>
+
+    <h3 class="grouphead"><span class="st st-path2">Path 2</span> You own the risk across the org</h3>
+    <p class="group-sub">The budget-owner's view — the two org-wide lines: identity (who is allowed in) and the network (where internal services live and who reaches them). This is where a single pilot becomes a rollout.</p>
+    <div class="door-grid">
+      <a class="door" href="/solutions/nopass/">
+        <div class="door-q">Who is allowed in?</div>
+        <div class="door-name">No<span>Pass</span></div>
+        <div class="door-sub">Access with no password. The enrolled device is the key; offboarding a person is revoking one identity, once, across every door. Built for field forces and shared devices.</div>
+        <div class="door-foot"><span class="door-go">See NoPass →</span><span class="st st-early">Design partner</span></div>
+      </a>
+      <a class="door" href="/solutions/novpn/">
+        <div class="door-q">Where does a service live?</div>
+        <div class="door-name">No<span>VPN</span></div>
+        <div class="door-sub">Internal apps get a private name only your mesh resolves. No public gateway to exploit, no flat network, no detour through anyone's cloud — including ours.</div>
+        <div class="door-foot"><span class="door-go">See NoVPN →</span><span class="st st-live">Live</span></div>
+      </a>
+    </div>
+
+    <p class="honest-note"><strong>Honest labels.</strong> <span class="st st-live">Live</span> means validated on real devices. <span class="st st-demo">Beta</span> means it works end-to-end and we're hardening it in daily use. <span class="st st-early">Design partner / Early</span> means the core runs but we're building it with a first customer, gaps and all. The full list of what each does <em>not</em> do yet is on <a href="/honest-limits.html">honest limits</a>.</p>
+  </div>
+</section>
+
+<!-- BAND 3 — start with one / ladder -->
+<section class="section band">
+  <div class="wrap solutions-hub">
+    <h2 class="hub-h2">You don't buy five things. You start with one.</h2>
+    <p class="hub-p">Most teams don't arrive needing an identity strategy. They arrive with one machine, one repo, one annoying VPN. So start there — the value is real from the first service, in five minutes, and it compounds as you bring more of your stack into the same mesh.</p>
+
+    <div class="ladder">
+      <div class="rung">
+        <div class="rung-step">Start</div>
+        <strong>One machine</strong>
+        <span>An engineer reaching a server (NoKey), or a repo shipping to prod (NoSecret). Personal, free, no meeting required.</span>
+      </div>
+      <div class="rung">
+        <div class="rung-step">Expand</div>
+        <strong>The network</strong>
+        <span>Internal apps behind that VPN nobody enjoys get private names and per-identity access (NoVPN). Now it's a team decision.</span>
+      </div>
+      <div class="rung">
+        <div class="rung-step">Extend</div>
+        <strong>Identity across the org</strong>
+        <span>Field force, shared devices, clean offboarding (NoPass). This is the budget line a CISO owns.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND 4 — the non-human wave -->
+<section class="section band-alt">
+  <div class="wrap solutions-hub">
+    <h2 class="hub-h2">The one nobody has answered yet: the non-human wave</h2>
+    <div class="ai-panel">
+      <h3>Your next thousand "users" won't be people</h3>
+      <p>The whole industry is pouring itself into AI, and the security question that comes with it is still fuzzy in most rooms. Scripts, cron jobs, and now AI agents already touch production data. They authenticate with <strong>API keys and tokens that don't expire, that nobody fully inventories, and that leave no trace of what they touched</strong>. When an auditor asks <em>"which agent read customer X's data last week"</em> — most teams can't answer today.</p>
+      <p>We are not going to pretend this is solved. It isn't — not by us, not by anyone. Our take is narrow and honest: the same primitive that gives a person a sovereign identity gives a script or an agent one too — scoped, short-lived, and visible in the ledger as an actor, with no static key left behind. That's it. It is <strong>a starting point for a conversation, not a finished product.</strong></p>
+      <p><strong>We'd rather be corrected than flattered.</strong> If you own automation or AI on regulated systems: where does this framing break for you? What are we missing?</p>
+      <div class="hero-actions" style="justify-content:flex-start; margin-top:6px;">
+        <a class="btn btn-primary" href="/solutions/nhi-agents/">See where NoAPIKey is today</a>
+        <a class="btn btn-outline" href="mailto:hello@ankayma.com?subject=NoAPIKey%20%E2%80%94%20a%20critique&amp;body=My%20role%3A%0AWhat%20scripts%2Fagents%20touch%20our%20prod%20today%3A%0AHow%20they%20authenticate%20now%3A%0AWhere%20your%20framing%20breaks%20for%20us%3A%0AWhat%20you%27re%20missing%3A%0A">Tell us where we're wrong →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND 5 — fit + CTA -->
+<section class="section band">
+  <div class="wrap solutions-hub">
+    <h2 class="hub-h2">Is Ankayma the right choice for you?</h2>
+    <div class="two-col">
+      <p class="hub-p"><strong>Reach for us when</strong> sovereignty is the point — you don't want your traffic, identities, or logs sitting inside a vendor's cloud or another jurisdiction; you run real infrastructure (VPS, on-prem, mixed cloud) rather than a single hyperscaler that already hands you its own zero-trust tooling; and you value being able to <em>prove</em> a claim (the data path, the ledger) over taking a brand's word.</p>
+      <p class="hub-p"><strong>Reach for someone else when</strong> you live entirely inside one cloud and its native access tooling covers you; when you need a mature browser-delivered SASE with a global PoP network today; or when a heavyweight on-prem PAM program is already funded and running. We'd rather tell you that up front than win a deal that unwinds in six months.</p>
+    </div>
+    <p class="honest-note">Everything we don't do yet, in plain words: <a href="/honest-limits.html">our honest limits →</a></p>
+
+    <div class="hero-actions" style="justify-content:flex-start; margin-top:24px;">
+      <a class="btn btn-primary" href="/#download">Download — it's free</a>
+      <a class="btn btn-outline" href="/#how">See the 5-minute walkthrough</a>
+    </div>
+
+    <p class="honest-note" style="margin-top:36px;">Want to help Ankayma reach the teams who need this — refer a peer, seed it in your company, or open a door to a buyer? There's a lane for each: <a href="/partners/">how to support Ankayma →</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma. Built in public.</span>
+    <ul>
+      <li><a href="/solutions/">Solutions</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

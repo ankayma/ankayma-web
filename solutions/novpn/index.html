@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoVPN — Internal apps without a VPN — Ankayma</title>
+  <meta name="description" content="Give each internal service a private name only your mesh can resolve. No public gateway to exploit, no flat network to cross, no detour through anyone's cloud — including ours." />
+  <link rel="canonical" href="https://ankayma.com/solutions/novpn/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="NoVPN — Internal apps without a VPN" />
+  <meta property="og:description" content="No public gateway, no flat network, no vendor cloud on your data path. The outcome ZTNA promises — without a new middleman." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ankayma.com/solutions/novpn/" />
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> — SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> — internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> — access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> — identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>NoVPN — internal apps without a VPN.</h1>
+    <p>Give each internal service a private name that only your mesh can resolve. No public gateway, no flat network, no detour through anyone's cloud — including ours.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose prose-wide">
+
+    <div class="prose-col">
+    <p>VPN here means the <strong>remote-access VPN</strong> — the corporate gateway your employees tunnel into for internal apps. Not site-to-site links between data centers, and not consumer VPNs; those are different animals.</p>
+    <p>That remote-access VPN hurts three rooms at once. Security lives with a public door that attackers scan for. Infrastructure lives with a concentrator every packet must visit. And users live with one more thing to log into, slow enough that they eventually turn it off.</p>
+    </div>
+
+    <div class="flowdiag" aria-hidden="true">
+      <div class="flow-row flow-old">
+        <span class="flow-label">Today</span>
+        <span class="flow-node">VPN appliance</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Public door</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Flat network inside</span>
+        <span class="flow-note">scanned · exploited · lateral movement</span>
+      </div>
+      <div class="flow-row flow-new">
+        <span class="flow-label">Ankayma</span>
+        <span class="flow-node">Private name in your mesh</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Per-service access</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node">Direct peer-to-peer</span>
+        <span class="flow-note">nothing public, no broker</span>
+      </div>
+    </div>
+
+    <div class="pain-cards grid-4">
+      <div class="pcard">
+        <div class="pcard-problem">The VPN appliance is a public door — under active exploitation.</div>
+        <div class="pcard-answer">There is no public door. Services carry private names that resolve only inside your mesh — no public DNS record, no open port.</div>
+        <div class="pcard-proof"><b>Evidence</b>5,000+ Ivanti appliances exposed to an already-exploited flaw (<a href="https://www.securityweek.com/exploited-vulnerability-puts-5000-ivanti-vpn-appliances-at-risk/" target="_blank" rel="noopener">SecurityWeek</a>); eight SonicWall CVEs used in ransomware (<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-060b" target="_blank" rel="noopener">CISA</a>).</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">On the VPN, you can see the whole network.</div>
+        <div class="pcard-answer">Access is per-service and per-identity, default-deny. Reaching one app grants exactly that app.</div>
+        <div class="pcard-proof"><b>Evidence</b>Network-level access opens lateral movement — the consensus finding of the entire ZTNA category.</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">The concentrator detour.</div>
+        <div class="pcard-answer">Connections go straight between the two endpoints. No data center in the middle, and no vendor cloud either.</div>
+        <div class="pcard-proof"><b>Evidence</b>Traffic hairpins through a data center before it reaches the app — latency that grows with load.</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-problem">Users just turn it off.</div>
+        <div class="pcard-answer">Nothing to toggle. Open the private name and you're in — pair it with <a href="/solutions/nopass/">NoPass</a> for the login itself.</div>
+        <div class="pcard-proof"><b>Evidence</b>Repeated logins and slow links — the quiet failure mode of every VPN rollout.</div>
+      </div>
+    </div>
+
+    <div class="prose-col">
+    <h2>The market already agreed to leave — the question is where to</h2>
+    <p>65% of enterprises plan to replace their VPN with ZTNA (<a href="https://www.gartner.com/en/documents/6780434" target="_blank" rel="noopener">Gartner</a>). But most ZTNA fixes these pains by routing your traffic through the vendor's cloud — you trade the old middleman for a new one, this time outside your jurisdiction.</p>
+    <p>That's not a feature gap they'll ship past next quarter; it's their business model. Cloud ZTNA creates value by working <em>on</em> your traffic — inspection, filtering, DLP, behavioral analytics. To work on traffic they must see it; to see it, it must flow through them. When you require <em>"no third party on my data path,"</em> they can't comply without switching off the very thing they sell.</p>
+    <p>A question you can put to any vendor: <strong>"If we turn off the path through your cloud, what's left of the product?"</strong> For cloud ZTNA, the honest answer is: almost nothing. For Ankayma, everything — the control plane only coordinates connections and was never on the data path, and there's a <a href="/#how">Prove-it button</a> so you don't have to take our word for it.</p>
+    <p>One honest boundary: this argument targets cloud-routed ZTNA. Peer-to-peer overlays share our data-plane answer — with them, the comparison is about who holds your identity, your control plane, and your logs. That story is on the <a href="/">front page</a>.</p>
+
+    <h2>Why ZTNA migrations stall — and why this one doesn't</h2>
+    <p>Most ZTNA works per-app, as a Layer-7 proxy. That one design choice is where the pain comes from: you need a full application inventory before you can write the first policy, server-initiated and legacy protocols break through a proxy, and the realistic timeline for a 500-person organization runs 9 to 14 months — the parallel-run phase alone eats 3 to 6 of them (<a href="https://www.decryptiondigest.com/blog/vpn-to-ztna-migration-practical-guide" target="_blank" rel="noopener">migration field guide</a>). The common end state: two systems running side by side — ZTNA for web apps, the old VPN kept alive as fallback for SSH, RDP and everything the proxy can't carry — double the administration, with the VPN attack surface still standing (<a href="https://www.venn.com/learn/zero-trust/ztna/" target="_blank" rel="noopener">Venn</a>).</p>
+    <p>The prize on the other side is real — VPNs eat 25 to 40% of helpdesk tickets in mature organizations, and completing the move cuts access tickets by half or more (<a href="https://meriplex.com/roi-of-ztna-calculating-risk-reduction-and-cost-saving/" target="_blank" rel="noopener">Meriplex</a>). It's the road there that's expensive.</p>
+    <p><strong>Everything ZTNA promises, at the network layer — legacy apps just work, no VPN fallback, no broker in your path.</strong> Ankayma is an overlay at the network layer, not a per-app proxy: two-way and legacy protocols run in the mesh the way they run on a LAN, by architecture. And coexistence isn't a risky migration phase here — it's the designed state: what you bring into the mesh gets secured, what you leave outside stays exactly as it was. Start with one service in five minutes, not with an inventory project.</p>
+
+    <h2>In the same mesh: NoKey — SSH without static keys</h2>
+    <p>The other public door most teams keep open is SSH. The average organization holds around 23,000 SSH keys and 90% of them are unmanaged; 46% of organizations never rotate (<a href="https://www.computerworld.com/article/1610856/poorly-managed-ssh-keys-pose-serious-risks-for-most-companies.html" target="_blank" rel="noopener">Ponemon / Venafi — magnitudes hold across surveys</a>). Keys don't expire and don't leave when people do — on average, every server carries one orphan root key of someone who already left (<a href="https://www.businesswire.com/news/home/20210128005138/en/Venafi-Study-CIOs-Massively-Underestimate-SSH-Risks" target="_blank" rel="noopener">Venafi</a>).</p>
+    <p>A static key is a mechanical key cut in dozens of copies and handed out over the years — nobody remembers who holds which copy, to which door. NoKey swaps that for a door that opens on the person plus a badge that expires: engineers reach machines by device identity, root is a signed grant that lives at most fifteen minutes and falls away on its own, every session start lands in your ledger, and the SSH server binds inside the overlay — no port on the internet, no bastion, and it never touches your existing sshd. Fifteen minutes isn't an exotic number: the industry's short-lived credentials already speak in minutes — Cloudflare mints 3-minute SSH certificates, EC2 Instance Connect keys live 60 seconds. Offboarding a person is revoking one identity. Works from a laptop — and from the phone in your pocket. <a href="/#how">See the 5-minute walkthrough →</a></p>
+
+    <h2>Who reaches for NoVPN</h2>
+    <p><strong>The freelancer who sells with demos</strong> — each project pinned to its own private domain, the client's device invited into the mesh, and the demo opens on their side with nothing public. <strong>The team with an internal portal</strong> — wikis, dashboards, admin panels that today sit behind a VPN nobody enjoys, tomorrow carry private names with per-identity access and a ledger.</p>
+
+    <div class="selfcheck" data-min="2">
+      <p class="sc-lead">Does this sound like your network?</p>
+      <p class="sc-sub">Tick what's true. Nothing is sent — this is for you.</p>
+      <ul class="sc-list">
+        <li><label><input type="checkbox" /> Internal apps are reachable through a VPN appliance that sits on the public internet.</label></li>
+        <li><label><input type="checkbox" /> Once someone's on the VPN, they can see more of the network than the one app they came for.</label></li>
+        <li><label><input type="checkbox" /> The last VPN or firewall CVE meant an emergency patch or a late-night scramble.</label></li>
+        <li><label><input type="checkbox" /> We looked at ZTNA and stalled — the migration read like a multi-month project.</label></li>
+      </ul>
+      <div class="sc-result">
+        <p><strong>That's the door.</strong> Put one internal app on a private name in five minutes — free, nothing public.</p>
+        <a class="btn btn-primary" href="/#download">Download free</a>
+      </div>
+    </div>
+
+    <h2>Is NoVPN the right choice for you?</h2>
+    <p><strong>Reach for us when</strong> you want internal apps off the public internet with no broker on your data path, you run real infrastructure rather than a single cloud that already covers you, and you'd rather not route internal traffic through a vendor's cloud or another jurisdiction.</p>
+    <p><strong>Reach for someone else when</strong> you need a global, browser-delivered SASE today, or your apps are all standard web behind a cloud proxy you're happy with. And with a peer-to-peer overlay like Tailscale the data-plane answer is the same as ours — there the honest comparison is control plane, identity, and logs, not the path.</p>
+    <p class="honest-note" style="margin-top:16px;">One choice among several — this page exists so you can tell which one you're looking at.</p>
+
+    <p class="honest-note" style="margin-top:24px;">We publish what this doesn't do yet, in plain words: <a href="/honest-limits.html">our honest limits →</a></p>
+
+    <div class="hero-actions" style="margin-top:24px;">
+      <a class="btn btn-primary" href="/#download">Download — it's free</a>
+      <a class="btn btn-outline" href="/#how">See how it works</a>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma. Built in public.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.selfcheck').forEach(function (box) {
+  var min = parseInt(box.dataset.min || '2', 10);
+  var result = box.querySelector('.sc-result');
+  box.addEventListener('change', function () {
+    var n = box.querySelectorAll('input:checked').length;
+    result.classList.toggle('on', n >= min);
+  });
+});
+</script>
+
+</body>
+</html>

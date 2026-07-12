@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSH from a phone, with no key — Ankayma for iOS is live — Ankayma</title>
+  <meta name="description" content="Ankayma is on the App Store. An iPhone can now join the mesh as a first-class node: resolve private domains, SSH into production with no static key, and show you the path the packets took. Why a Secure Enclave key is a stronger credential than the key file on your laptop — and what doesn't work yet." />
+  <link rel="canonical" href="https://ankayma.com/blog/ssh-from-a-phone-with-no-key/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:title" content="SSH from a phone, with no key — Ankayma for iOS is live" />
+  <meta property="og:description" content="An iPhone as a first-class mesh node: private domains, keyless SSH, and a provable path — plus the honest list of what doesn't work yet." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ankayma.com/blog/ssh-from-a-phone-with-no-key/" />
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/novpn/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> &mdash; internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> &mdash; access without passwords</a></li>
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> &mdash; CI/CD without static secrets</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>SSH from a phone, with no key — Ankayma for iOS is live</h1>
+    <p>By Luffy Bao, CTO at Ankayma · July 2026 · <a href="/blog/">← All writing</a></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <p>Ankayma is now <a href="https://apps.apple.com/vn/app/ankayma/id6786016527">on the App Store</a>. The short version of what that means: an iPhone can join your mesh as a first-class node. It resolves your private domain names — names that don't exist on the public internet. It opens your internal services over HTTPS with a real certificate, with no port ever exposed to the world. And it can SSH into a production box, from a terminal inside the app, with no SSH key stored anywhere.</p>
+
+    <p>That last one is the part that sounds wrong, so let me argue it properly.</p>
+
+    <p><strong>Your laptop's SSH key is a file. That's the whole problem.</strong> The key sitting in <code>~/.ssh</code> on a laptop is a piece of data: it can be copied, backed up somewhere it shouldn't be, read by anything that runs with your user's permissions, and it stays valid until someone remembers to rotate it. Every "harden your SSH" guide is ultimately a list of ways to guard that file harder. The file is still there.</p>
+
+    <p><strong>The phone takes a different route: the key never exists as a file at all.</strong> When you enroll an iPhone into the mesh — scan a QR code, confirm with Face ID — the device generates its key pair inside the Secure Enclave. That key cannot be exported. Not by the app, not by a backup, not by me. What travels is a certificate binding <em>this device</em> to <em>this identity</em>; what stays is hardware that will sign challenges only after a biometric check. This is the same mechanism your passkeys use. We apply it one layer down: not to log into one website, but to decide which machines can reach which machines at all.</p>
+
+    <p><strong>So "SSH from a phone" is not a party trick — it's the stronger credential.</strong> When you open the in-app terminal and connect to a production server, the session is bound to the device identity, over an encrypted tunnel that exists only between your phone and that server. There is no bastion in the middle, no public port 22, and no key file anywhere in the chain. Needing root is a separate, deliberate step: the control plane issues a signed grant that lives at most 15 minutes, each elevated operation is logged, and the grant dissolves on its own. A phone that's lost or stolen is one revocation away from being nothing — the certificate dies, and every door it could open closes at once. Compare that honestly with recovering a leaked key file: you don't know where the copies are.</p>
+
+    <p><strong>Private domains work the same way.</strong> You attach a name you own to a service running on any node — a dev box, a VPS, a Mac mini at home. Only devices inside your mesh can resolve that name; the system issues real TLS certificates automatically. From the iPhone, you open the URL and it loads — over a peer-to-peer tunnel, not through our infrastructure. The app can show you the path a connection actually took, because "the vendor is not on the data path" should be something you can check, not something you're asked to believe.</p>
+
+    <p><strong>Now the part release announcements usually skip: what doesn't work yet.</strong></p>
+
+    <ul>
+      <li><strong>Two devices both behind hard NAT can fail to connect directly today.</strong> We hit this ourselves: an iPhone on café wifi trying to reach a Mac mini behind a home router. The fix is a relay for that fallback case — encrypted end-to-end, so it changes availability, not confidentiality — and it's in progress, not shipped. Until then, that specific topology is a known hole.</li>
+      <li><strong>iOS and macOS are what's live. Android and Windows clients aren't public yet.</strong> If your fleet is mixed, today we cover half of it.</li>
+      <li><strong>The audit trail records connections and grants, not keystrokes.</strong> You can prove which identity reached which machine, when, and what elevation it held. You cannot replay the session like a video. If your auditor requires full session recording, we are not that tool today — and I'd rather tell you here than in a proof-of-concept review.</li>
+    </ul>
+
+    <p><strong>My bias, stated plainly.</strong> I build this, so I naturally weigh "no key file anywhere" as worth more than "works on every platform on day one." You may weigh it the other way. The narrow claim I'll defend: a non-exportable, hardware-bound, biometric-gated key is a structurally better credential than a key file on a general-purpose laptop — and once you accept that, the phone in your pocket stops being the risky device and starts being the strongest one you own.</p>
+
+    <p>The app is free to try with your own devices — enroll two nodes and see whether the path proof convinces you. If you run infrastructure where this matters and you see a flaw in the argument — a topology it breaks on, a compliance requirement it can't meet — that's exactly the mail I want to receive.</p>
+
+    <p style="margin-top:48px; padding-top:24px; border-top:1px solid var(--border);">
+      <em>Luffy Bao is CTO at Ankayma, building zero-trust mesh infrastructure for regulated organizations in Southeast Asia and the Gulf. Questions or counterarguments? <a href="mailto:hello@ankayma.com">hello@ankayma.com</a></em>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

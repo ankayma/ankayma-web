@@ -320,6 +320,19 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 .feat strong { display: block; font-size: 15px; margin-bottom: 6px; }
 .feat p { font-size: 13px; color: var(--dim); line-height: 1.6; }
 
+/* DOWNLOAD CARDS */
+.dl-card { position: relative; text-align: center; padding: 28px 20px; transition: border-color .15s, background .15s; }
+.dl-card-top { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 16px; }
+.dl-icon { color: var(--text); }
+.dl-card strong { font-size: 15px; margin-bottom: 0; }
+.dl-card p { margin: 0; }
+.dl-cta { width: 100%; justify-content: center; padding: 10px 16px; font-size: 13px; }
+.dl-sub { font-size: 12px; color: var(--dim); margin-top: 8px !important; }
+.dl-soon { font-size: 13px; color: var(--dim); padding: 10px 0; }
+.dl-badge { display: none; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); margin: 0; padding: 3px 10px; font-size: 10px; white-space: nowrap; }
+.dl-card.dl-recommended { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.dl-card.dl-recommended .dl-badge { display: inline-block; }
+
 /* WOW TABS — the 3 five-minute experiences, each closing in proof */
 .wow-tabs {
   display: flex;

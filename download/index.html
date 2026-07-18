@@ -56,7 +56,8 @@
           <svg class="dl-icon" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.34l1.746-3.023a.417.417 0 00-.153-.57.416.416 0 00-.57.152l-1.767 3.06a10.94 10.94 0 00-9.558 0L5.454 11.9a.416.416 0 00-.57-.153.417.417 0 00-.153.57l1.746 3.023C3.6 17.06 1.75 20.17 1.5 23.75h21c-.25-3.58-2.1-6.69-4.977-8.41zM7 20a1.25 1.25 0 110-2.5A1.25 1.25 0 017 20zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z" transform="translate(0 -1.75)"/></svg>
           <strong>Android</strong>
         </div>
-        <p class="dl-soon">Play Store — coming soon</p>
+        <p><a class="btn btn-primary dl-cta" href="https://get.ankayma.com/android/Ankayma_1.1.6_arm64.apk">Download .apk (v1.1.6)</a></p>
+        <p class="dl-sub">Android 7+ · arm64 · Play Store soon</p>
       </div>
       <div class="feat dl-card" data-platform="macos">
         <span class="dl-badge badge">Recommended</span>
@@ -93,6 +94,19 @@
         <p>The mesh agent, CLI, and this app are open source. Read every line that runs on your infrastructure.</p>
         <a class="btn btn-outline" href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">View on GitHub →</a>
       </div>
+    </div>
+
+    <div class="os-box" style="margin-top:20px; display:block;">
+      <h3 style="margin:0 0 8px;">Verify your download</h3>
+      <p style="margin:0 0 14px;">Every desktop &amp; Android build ships a Cosign signature over its checksums and a build-provenance attestation on Sigstore's public transparency log — so you can prove the file came from our build, not a tampered mirror. Optional, but it's your machine.</p>
+      <pre style="margin:0; padding:14px 16px; background:#0d1117; color:#c9d1d9; border-radius:8px; overflow-x:auto; font-family:'SF Mono',Consolas,Menlo,monospace; font-size:12px; line-height:1.55;"><code># Authenticity — checksum manifest signed with the key committed in git
+cosign verify-blob --insecure-ignore-tlog \
+  --key cosign.pub --signature SHA256SUMS.sig SHA256SUMS
+# Integrity — the file matches the signed manifest
+sha256sum -c SHA256SUMS          # (Windows/macOS: shasum -a 256 -c)
+# Strongest — build provenance on the transparency log (no keys to trust)
+gh attestation verify &lt;file&gt; -R ankayma/open-client</code></pre>
+      <p style="margin:14px 0 0; font-size:13px; opacity:.75;">macOS <code>.dmg</code> is also Apple-notarized. The Linux <code>install.sh</code> runs the Cosign check for you automatically.</p>
     </div>
   </div>
 </section>

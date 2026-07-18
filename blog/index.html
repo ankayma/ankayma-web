@@ -44,36 +44,43 @@
   <div class="prose">
 
     <article style="padding-bottom:24px; border-bottom:1px solid var(--border); margin-bottom:24px;">
+      <h2 style="margin-bottom:6px;"><a href="/blog/locking-every-door-but-one/">Locking every door but one — and why the break-glass has to be yours</a></h2>
+      <p style="color:var(--muted); margin-top:0; font-size:14px;">19 July 2026</p>
+      <p>You can lock every network path down to the mesh — SSH, RDP, every static port closed. But if that's the only door and it dies, you're locked out. "Break-glass" means two opposite things: a provider-side way back in is a backdoor wearing a friendly label; the honest one lives on an out-of-band plane you own. Why the escape hatch has to be yours — and the cost of doing it right.</p>
+      <p><a href="/blog/locking-every-door-but-one/">Read →</a></p>
+    </article>
+
+    <article style="padding-bottom:24px; border-bottom:1px solid var(--border); margin-bottom:24px;">
       <h2 style="margin-bottom:6px;"><a href="/blog/ssh-from-a-phone-with-no-key/">SSH from a phone, with no key — Ankayma for iOS is live</a></h2>
-      <p style="color:var(--muted); margin-top:0; font-size:14px;">July 2026</p>
+      <p style="color:var(--muted); margin-top:0; font-size:14px;">12 July 2026</p>
       <p>Ankayma is on the App Store. An iPhone can now join the mesh as a first-class node: resolve private domains, open internal services with real TLS and no public port, and SSH into production from an in-app terminal — with no key file anywhere in the chain. Why a Secure Enclave key beats the file in <code>~/.ssh</code>, and the honest list of what doesn't work yet.</p>
       <p><a href="/blog/ssh-from-a-phone-with-no-key/">Read →</a></p>
     </article>
 
     <article style="padding-bottom:24px; border-bottom:1px solid var(--border); margin-bottom:24px;">
       <h2 style="margin-bottom:6px;"><a href="/blog/your-ci-deploy-secret-will-leak/">Your CI deploy secret will leak — and why the answer is no secret to leak</a></h2>
-      <p style="color:var(--muted); margin-top:0; font-size:14px;">July 2026</p>
+      <p style="color:var(--muted); margin-top:0; font-size:14px;">4 July 2026</p>
       <p>Almost every pipeline eventually accumulates a long-lived deploy secret — and long-lived secrets leak at industrial scale. The structural fix isn't guarding the secret harder; it's per-run ephemeral identity with an immutable access log. And when an AI agent runs the deploy, the honest question isn't "will it get fooled" but "what can a fooled run reach, and can I prove what it did."</p>
       <p><a href="/blog/your-ci-deploy-secret-will-leak/">Read →</a></p>
     </article>
 
     <article style="padding-bottom:24px; border-bottom:1px solid var(--border); margin-bottom:24px;">
       <h2 style="margin-bottom:6px;"><a href="/blog/who-signs-the-code-that-holds-your-key/">Who signs the code that holds your key?</a></h2>
-      <p style="color:var(--muted); margin-top:0; font-size:14px;">June 2026</p>
+      <p style="color:var(--muted); margin-top:0; font-size:14px;">27 June 2026</p>
       <p>Holding your own key closes one door — the provider reading your data at rest. It leaves a second open: who controls the next signed client update. Why "we can't read your data" is the middle of the security conversation, not the end — and the diagnostic question that tells you which.</p>
       <p><a href="/blog/who-signs-the-code-that-holds-your-key/">Read →</a></p>
     </article>
 
     <article style="padding-bottom:24px; border-bottom:1px solid var(--border); margin-bottom:24px;">
       <h2 style="margin-bottom:6px;"><a href="/blog/losing-the-key-is-final/">Losing the key is final — and why a "recovery" button is a backdoor</a></h2>
-      <p style="color:var(--muted); margin-top:0; font-size:14px;">June 2026</p>
+      <p style="color:var(--muted); margin-top:0; font-size:14px;">19 June 2026</p>
       <p>You cannot have both "the provider can never read my data" and a recovery button only they can press — one of those is false. Why a provider-side recovery path is a backdoor wearing a friendly label, and what honest, customer-controlled recovery actually costs.</p>
       <p><a href="/blog/losing-the-key-is-final/">Read →</a></p>
     </article>
 
     <article style="padding-bottom:24px; border-bottom:1px solid var(--border);">
       <h2 style="margin-bottom:6px;"><a href="/blog/data-residency-is-not-data-sovereignty/">Data residency is not data sovereignty</a></h2>
-      <p style="color:var(--muted); margin-top:0; font-size:14px;">June 2026</p>
+      <p style="color:var(--muted); margin-top:0; font-size:14px;">17 June 2026</p>
       <p>Does your obligation constrain <em>where the data sits</em>, or <em>who is technically able to read it</em>? Most fintech systems are built on the weaker reading while the contract promises the stronger one — and the gap stays invisible until an auditor asks you to prove which one you have.</p>
       <p><a href="/blog/data-residency-is-not-data-sovereignty/">Read →</a></p>
     </article>

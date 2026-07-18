@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Locking every door but one — and why the break-glass has to be yours — Ankayma</title>
+  <meta name="description" content="You can lock every network path down to the mesh — SSH, RDP, every static port closed. But if that's the only door and it dies, you're locked out. Why a provider-side break-glass is a backdoor, and why the escape hatch has to live in an out-of-band plane you own." />
+  <link rel="canonical" href="https://ankayma.com/blog/locking-every-door-but-one/" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:title" content="Locking every door but one — and why the break-glass has to be yours" />
+  <meta property="og:description" content="Lock down to one door — but the break-glass has to be yours. Why a provider-side escape hatch is the backdoor you were trying to remove, and where recovery should actually live." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ankayma.com/blog/locking-every-door-but-one/" />
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#how">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/novpn/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> &mdash; internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> &mdash; access without passwords</a></li>
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> &mdash; CI/CD without static secrets</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/download">Download</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Locking every door but one — and why the break-glass has to be yours</h1>
+    <p>By Luffy Bao, CTO at Ankayma · 19 July 2026 · <a href="/blog/">← All writing</a></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <p>Almost every operations team weighing a zero-trust access layer in front of running infrastructure asks the same question, and it's a fair one: <em>if we lock everything down to one door of yours, and that door dies, are we locked out of our own machines?</em> This isn't an idle worry. It's the real reason many teams never tighten as far as they should, leaving SSH wide open "just in case" — paying for a security layer and then hand-propping open the exact door it was meant to close.</p>
+
+    <p>The blunt answer: yes, you can lock down so that every network path in runs only through the mesh — SSH closed, RDP closed, every static-IP port closed. And yes, if that's the <em>only</em> way in and it dies, you're locked out. So the real question isn't "can you lock it down" — it's <em>where the break-glass lives, and who owns it</em>. This is exactly where the whole guarantee can quietly come apart, because "break-glass" means two completely different things, and one of them is the thing you were paying to remove.</p>
+
+    <p><strong>"Break-glass" has two readings.</strong> One is <em>provider-side break-glass</em>: the provider keeps some way back into your machine when their access layer fails. The other is <em>break-glass you own</em>: the machine is still reachable, but only through a management plane that sits inside your own infrastructure, never through the provider. These sound similar on a feature list. They are opposites in the threat model.</p>
+
+    <p><strong>A provider-side break-glass is a backdoor wearing a friendly label, and this is just logic.</strong> If the provider can get back into your machine after the network layer is fully locked, then the provider has a way in that <em>doesn't pass through your policy</em> — precisely the capability that "data never traverses provider infrastructure, the provider can't decrypt" is supposed to remove. You cannot have both "the provider can never touch my machine" and "the provider can get me back in when their layer dies." If both are on the same page, one of them is false. A provider-side escape hatch is not an extra feature bolted onto a sovereign design; it is the deletion of what made it sovereign.</p>
+
+    <p><strong>The honest answer keeps the break-glass on your side of the line — and it's feasible because two different planes are involved.</strong> "Lock everything to the mesh" only speaks to the <em>in-band plane</em> — the network layer, the thing the access layer actually governs. The break-glass lives on a different plane entirely — <em>out-of-band</em>: your cloud provider's serial console, IPMI/BMC, the hypervisor console. This plane doesn't traverse the host's network stack; it reaches <em>beneath</em> the OS. So it isn't "another open network port" — it's a separate management plane, and most important, it sits inside <em>your</em> cloud account or hardware, outside the access provider's reach. The honest claim is narrow and exact: <em>Ankayma is the only in-band way in; recovery runs over an out-of-band plane that lies outside Ankayma's trust boundary.</em></p>
+
+    <p>The consequence is three things a centralized, trust-the-cloud model can't say:</p>
+
+    <ul>
+      <li><strong>You choose the lockdown level; you aren't forced.</strong> Run the access layer alongside your existing SSH and leave it untouched; or tighten node type by node type; or go fully mesh-only — it's a dial you set to your own risk appetite, not a switch someone flips for you.</li>
+      <li><strong>Mesh-only lockdown becomes viable in production</strong>, because the lockout risk is retired by an out-of-band path <em>you own</em> — not by a provider-side button.</li>
+      <li><strong>The access provider dying or being locked out doesn't trap you</strong>, and the provider has <em>no</em> secret recovery path. The way back belongs to your infrastructure, so trust doesn't quietly migrate to the vendor. That's the sentence a trust-the-cloud model can't say, because there the recovery path usually <em>is</em> the vendor's infrastructure.</li>
+    </ul>
+
+    <p><strong>Don't skip the cost — this model isn't free, it's different.</strong></p>
+
+    <ul>
+      <li><strong>The out-of-band path has to be real, and you have to rehearse it.</strong> A break-glass you've never tested is a break-glass you don't have. Provisioning console access, verifying it works <em>with the network locked</em>, drilling it periodically — none of this can be outsourced to the access provider, because outsourcing it <em>to them</em> is how you recreate the backdoor.</li>
+      <li><strong>The break-glass trust root shifts to your infrastructure provider's console IAM / BMC</strong>, not to a cryptographic boundary. This is a <em>bounded, disclosed</em> trust delegation — you must own and audit it, not pretend it isn't there.</li>
+      <li><strong>The failure semantics are a genuine judgment call, not a default.</strong> When the access layer dies: does the lockdown ruleset hold (safe, but you must use out-of-band to get back in) or tear itself down (you get in, but the posture failed open)? For banks and regulated workloads: stay-locked by default, out-of-band mandatory. For lighter workloads: you may choose otherwise. Which threshold you pick is yours.</li>
+    </ul>
+
+    <p>And the limit I'll state plainly: an out-of-band path protects you against <em>lockout</em> and against a <em>provider with a backdoor</em>. It doesn't make you immune to the fact that your cloud provider is also a party you trust at that layer, and it doesn't remove the need for discipline — time-box it, alert on it, write every use into the audit ledger. The trust doesn't vanish; it moves — from the access provider to a plane you own and can audit. That move is the point.</p>
+
+    <p><strong>Let me state my bias.</strong> I build toward break-glass-that-belongs-to-the-customer, so be skeptical of how I frame the trade-off. But the claim is narrow: don't let the fear of lockout talk you into a provider-side escape hatch that quietly reintroduces the exact backdoor you were trying to remove. The right fix for a single door is not a provider-side way back in — it's a way back in that lives inside your own infrastructure.</p>
+
+    <p><strong>So what should you actually ask?</strong> Run the question forward. <em>If your agent died right now on a fully locked-down machine, what's my way back in — and is it your infrastructure or mine?</em> If it's the provider's, ask the follow-up that matters: <em>what else does that same path let the provider do, on a normal day, without me?</em> The answer to the second question is the real measure of how sovereign the design was in the first place.</p>
+
+    <p>I write about this because the break-glass conversation is where a lot of "zero-trust" promises quietly fail, and it's a core part of what I'm building at ankayma. If you're weighing how to lock infrastructure down as far as it should go without locking yourself out, I'd like to hear your constraints — including the ones that make my approach look wrong.</p>
+
+    <p style="margin-top:48px; padding-top:24px; border-top:1px solid var(--border);">
+      <em>Luffy Bao is CTO at Ankayma, building zero-trust mesh infrastructure for regulated organizations in Southeast Asia and the Gulf. Questions or counterarguments? <a href="mailto:hello@ankayma.com">hello@ankayma.com</a></em>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

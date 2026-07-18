@@ -98,7 +98,7 @@
 
     <div class="os-box" style="margin-top:20px; display:block;">
       <h3 style="margin:0 0 8px;">Verify your download</h3>
-      <p style="margin:0 0 14px;">Every desktop &amp; Android build ships a Cosign signature over its checksums and a build-provenance attestation on Sigstore's public transparency log — so you can prove the file came from our build, not a tampered mirror. Optional, but it's your machine.</p>
+      <p style="margin:0 0 14px;">The Windows, Linux and Android builds ship a Cosign signature over their checksums, plus a build-provenance attestation on Sigstore's public transparency log — so you can prove the file came from our build, not a tampered mirror. (macOS is Apple-notarized instead.) Optional, but it's your machine.</p>
       <pre style="margin:0; padding:14px 16px; background:#0d1117; color:#c9d1d9; border-radius:8px; overflow-x:auto; font-family:'SF Mono',Consolas,Menlo,monospace; font-size:12px; line-height:1.55;"><code># Authenticity — checksum manifest signed with the key committed in git
 cosign verify-blob --insecure-ignore-tlog \
   --key cosign.pub --signature SHA256SUMS.sig SHA256SUMS

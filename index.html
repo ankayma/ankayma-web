@@ -9,6 +9,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
+  <script src="/nav.js" defer></script>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
   <div class="inner">
     <a class="logo" href="/">An<span>kayma</span></a>
     <ul>
-      <li><a href="#how">Product</a></li>
+      <li><a href="#getting-started">Product</a></li>
       <li class="nav-drop"><a href="/solutions/">Solutions</a>
         <ul class="drop-menu">
           <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
@@ -32,6 +33,9 @@
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/download">Download</a></li>
     </ul>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -41,148 +45,65 @@
     <h1>The <em>sovereign</em> zero-trust mesh.</h1>
     <p>Identity-bound access across any network — your keys, your infra, and proof the vendor was never on your data path.</p>
     <div class="hero-actions">
-        <a class="btn btn-primary" href="/download">
+        <a class="btn btn-primary" href="/docs/getting-started.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Get started
+        </a>
+        <a class="btn btn-outline" href="/download">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
           Download — it's free
         </a>
-        <a class="btn btn-outline" href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.376.203 2.394.1 2.646.64.698 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-          View source
-        </a>
       </div>
-      <p class="hero-note">Sign up with GitHub · No credit card · Cancel anytime</p>
+      <!-- <p class="hero-note" style="margin-top:22px;">Sign up with GitHub · No credit card · Cancel anytime · <a href="https://github.com/ankayma/open-client" target="_blank" rel="noopener">View source ↗</a></p> -->
   </div>
 </section>
 
 <!-- COEXISTENCE -->
 <section class="coexist-strip">
-  <div class="wrap coexist-grid">
-    <div class="coexist-copy">
-      <p class="coexist-title">Adds on — never touches what's already running.</p>
-      <p class="coexist-sub">No interface takeover, no route hijack. Anything you keep out of the mesh stays exactly as it is — remove Ankayma and everything outside it is unaffected. Proof:</p>
-    </div>
-    <div class="coexist-paths">
+  <div class="wrap">
+    <p class="coexist-title"><span class="c-acc">Compose, not replace</span> <span class="ct-rest">— secure what you choose, leave the rest untouched.</span></p>
+    <p class="coexist-sub">Ankayma layers a sovereign zero-trust path <strong>on top of</strong> what you already run — you choose what joins the mesh; everything else stays exactly as it is.</p>
+    <div class="coexist-cards">
       <div class="path-card">
-        <div class="path-tag">Path 1 · DB replication — prod-critical</div>
-        <p>Not in the mesh, not dependent on it. <strong>Untouched.</strong></p>
+        <div class="path-head">
+          <span class="path-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+          <span class="path-tag">Kept out · untouched</span>
+        </div>
+        <p>Your DB replication and engine-native TLS stay off the mesh — prod-critical, not dependent on Ankayma. <strong>Unchanged.</strong></p>
+      </div>
+      <div class="coexist-amp" role="img" aria-label="at the same time" title="at the same time">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
       </div>
       <div class="path-card secured">
-        <div class="path-tag">Path 2 · Admin access — brought in</div>
-        <p>Just secured: identity-bound, default-deny, every session in your ledger.</p>
+        <div class="path-head">
+          <span class="path-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="path-tag">Brought in · secured</span>
+        </div>
+        <p><strong>NoKey SSH</strong> and admin access join the mesh — identity-bound, default-deny, every session in your ledger.</p>
       </div>
     </div>
+    <p class="coexist-closing">No app-by-app migration, no 3–6 month cutover. Running side-by-side isn't a phase you endure — it's how Ankayma is built.</p>
   </div>
 </section>
 
-<!-- HOW IT WORKS — install to proof (mesh + secretless deploy + receipt) -->
-<section class="section" id="how" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<!-- GETTING STARTED — first-win golden path -->
+<section class="section" id="getting-started">
   <div class="wrap">
-    <span id="features"></span>
-    <div class="section-label">How it works</div>
-    <h2>From install to proof in 5 minutes</h2>
-    <p>Pick what you want to prove first. Each path ends in proof you hold — not a promise you trust. Connection is a commodity; the receipt is the product.</p>
-
-    <div class="wow-tabs" role="tablist" aria-label="Five-minute experiences">
-      <button type="button" class="wow-tab active" role="tab" aria-selected="true" data-panel="wow-privdomain">🌐 Private domain</button>
-      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="wow-cicd">🧾 No-secret CI/CD</button>
-      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="wow-ssh">🔑 No-key SSH <span class="badge badge-sm">early access</span></button>
-    </div>
-
-    <div class="wow-panel active" id="wow-privdomain" role="tabpanel">
-      <p class="wow-pitch">Your service on your own domain — only your mesh can see it. No public DNS, no open port, and your client still opens the demo themselves.</p>
-      <div class="deploy-grid wow-split">
-        <div class="wow-steps">
-          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and enroll your devices — app on your laptop or phone, CLI on the machine that runs your service. Keys are generated locally and never leave the device; each one joins your mesh with a stable overlay IP.</span></div>
-          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>Add a private domain and point it at your service — the name exists only inside your mesh.</span></div>
-          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Open it from any of your devices — then send a join-link so your client's device can open it too.</span></div>
-        </div>
-        <figure class="tab-shot">
-          <img src="assets/app-subdomains.png" alt="Ankayma app — Subdomains screen: a private name mapped to a mesh node, TLS ready" width="656" height="659" loading="lazy" />
-          <figcaption>The app's Subdomains screen — your private name, mapped to your node, TLS ready.</figcaption>
-        </figure>
+    <div class="section-label">Getting started</div>
+    <h2>Your first win — NoKey SSH from your phone</h2>
+    <p>One guided path in about five minutes — no key, no bastion, no public port — ending in proof the vendor was never on the wire.</p>
+    <div class="deploy-grid wow-split">
+      <div class="wow-steps">
+        <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~2 min</span><span>On your <strong>MacBook</strong>, sign in with GitHub and Connect — your free F0 space, one click.</span></div>
+        <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>Add your <strong>iPhone</strong> by scanning a QR — same account, no second login.</span></div>
+        <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>From the iPhone, tap <strong>SSH</strong> on your MacBook — a shell on your laptop, no static key. This is <strong>NoKey SSH</strong>.</span></div>
+        <div class="wstep"><span class="wstep-num">4</span><span class="wstep-time">~30 s</span><span>Tap <strong>◈ path → Vendor in path: No</strong>. <strong>Prove It</strong>.</span></div>
+        <a class="btn btn-primary" href="/docs/getting-started.html" style="margin-top:16px; align-self:flex-start;">Follow the full step-by-step guide →</a>
       </div>
-      <p class="wow-proof">◈ Proof: no public DNS record, no public port — names resolve only inside your mesh.</p>
-      <p class="wow-tiers">Free: 5 names → Plus: 20 → Team: your team on them</p>
-    </div>
-
-    <div class="wow-panel" id="wow-cicd" role="tabpanel">
-      <p class="wow-pitch">Deploy from CI with no static secret — every run ends in a signed receipt you hold.</p>
-      <div class="deploy-grid wow-split">
-        <div class="wow-steps">
-          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and enroll your prod box — one CLI command. Keys are generated locally; your device <strong>is</strong> your admin identity, no secret to store.</span></div>
-          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>Set the rule from your laptop or phone: <code>agent ci-policy add --repo you/app --ref main --target prod</code>. "This repo, this branch, deploys to this box."</span></div>
-          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Push. Your Action mints a short-lived OIDC token — scoped, deploy-only, expires in minutes, nothing static in CI — and the signed run-receipt lands in your tamper-evident ledger.</span></div>
-        </div>
-        <div class="receipt" aria-label="Example signed run-receipt">
-          <div class="receipt-bar"><span></span><span></span><span></span></div>
-          <div class="receipt-body">
-            <div class="rl-full"><span class="c-dim">$</span> agent ci-deploy</div>
-            <div class="rl-full"><span class="c-ok">✓</span> ephemeral access granted <span class="c-dim">· expires 15m</span></div>
-            <div class="rl-head">Signed run-receipt</div>
-            <div class="rl"><span class="rk">run</span><span class="rv">ci_4747886d</span></div>
-            <div class="rl"><span class="rk">repo</span><span class="rv">acme/api</span></div>
-            <div class="rl"><span class="rk">ref</span><span class="rv">refs/heads/main</span></div>
-            <div class="rl"><span class="rk">issuer</span><span class="rv">github</span></div>
-            <div class="rl"><span class="rk">scope</span><span class="rv">deploy-only</span></div>
-            <div class="rl"><span class="rk">secret</span><span class="rv"><span class="c-ok">none</span></span></div>
-            <div class="rl"><span class="rk">ledger</span><span class="rv">CiDeployAccess <span class="c-dim">· tamper-evident</span></span></div>
-            <div class="rl"><span class="rk">verify</span><span class="rv">chain_intact <span class="c-ok">✓</span></span></div>
-            <div class="rl-head">Path</div>
-            <div class="rl"><span class="rk">data</span><span class="rv">direct WireGuard → prod-vps</span></div>
-            <div class="rl"><span class="rk">vendor</span><span class="rv">control channel only — <span class="c-ok">not on the data path</span></span></div>
-          </div>
-        </div>
-      </div>
-      <p class="wow-proof">◈ Proof: the run-receipt — which run, which repo, which service — <code>chain_intact ✓</code>.</p>
-      <p class="wow-tiers">Free: your repos → Team: your whole team → Growth: auditor-ready evidence</p>
-    </div>
-
-    <div class="wow-panel" id="wow-ssh" role="tabpanel">
-      <p class="wow-pitch">SSH to prod: no bastion, no static key — every session lands in your ledger.</p>
-      <div class="deploy-grid wow-split">
-        <div class="wow-steps">
-          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and install the agent on your laptop and your server — both enroll into the mesh; your device is your identity, no key file to copy around.</span></div>
-          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>SSH to the box over the mesh: <code>agent ssh prod-vps</code> — no bastion, no VPN, no static key.</span></div>
-          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Check your ledger: the session start is already there — who, which node, when.</span></div>
-        </div>
-        <figure class="tab-shot">
-          <img src="assets/app-ssh.png" alt="Ankayma app — SSH terminal connected to demo-server from an iPhone" width="656" height="503" loading="lazy" />
-          <figcaption>A real SSH session from the iPhone app — connected to your box, no key file, no bastion.</figcaption>
-        </figure>
-      </div>
-      <p class="wow-proof">◈ Proof: every session start is a ledger entry — who, which node, when.</p>
-      <p class="wow-tiers">Free: your devices → Team: your team → Growth: session evidence</p>
-    </div>
-
-    <script>
-      document.querySelectorAll('.wow-tabs .wow-tab').forEach(function (tab) {
-        tab.addEventListener('click', function () {
-          document.querySelectorAll('.wow-tabs .wow-tab').forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-          document.querySelectorAll('.wow-panel').forEach(function (p) { p.classList.remove('active'); });
-          tab.classList.add('active');
-          tab.setAttribute('aria-selected', 'true');
-          document.getElementById(tab.dataset.panel).classList.add('active');
-        });
-      });
-    </script>
-
-    <div class="prove-callout">
-      <div class="prove-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
-      </div>
-      <div>
-        <strong>Press “Prove it.”</strong>
-        <p>Most overlays can tell you it connected. None can hand you proof your traffic never touched the vendor. Ankayma shows the real path as an artifact you hold — not a promise you trust.</p>
-      </div>
-    </div>
-
-    <p class="honest-note">
-      Honest about the edges: at F0 the receipt is <strong>tamper-evident</strong> (anchored in an append-only ledger). The ledger records connection-level facts — which run, which identity, which service it reached — not the commands run inside a session. Signing it with your own key plus an external witness is on the roadmap (Growth). Path-proof is absolute for direct peer-to-peer connections. <a href="honest-limits.html">See our honest limits →</a>
-    </p>
-
-    <div class="under-hood">
-      <span class="uh-label">Under the hood</span>
-      <span class="uh-items">WireGuard end-to-end · your own tenant CA · NAT traversal (STUN + relay fallback) · default-deny policy · open-source agent, Cosign-signed builds</span>
+      <figure class="tab-shot">
+        <img src="assets/app-ssh.png" alt="Ankayma app — SSH terminal connected to your MacBook from an iPhone" width="656" height="503" loading="lazy" />
+        <figcaption>SSH from your phone into your laptop — a shell over the mesh.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -200,15 +121,14 @@
         <div class="plan-price">$0 <span>— free forever</span></div>
         <div class="plan-desc">Full sovereignty from $0 — for individuals and their projects.</div>
         <ul>
-          <li>10 nodes — yours + your clients' viewers</li>
+          <li>10 nodes — your's devices</li>
           <li>5 private domains</li>
           <li>Secretless CI deploy + signed receipt</li>
           <li>"Prove it" — the real peer-to-peer path</li>
           <li>WireGuard P2P encryption</li>
           <li>Open-source agent</li>
-          <li class="dim">More scale, raw TCP, second lock → Plus</li>
         </ul>
-        <a class="btn btn-outline" href="/download" style="width:100%; justify-content:center;">Get started free</a>
+        <a class="btn btn-primary" href="/download" style="width:100%; justify-content:center;">Get free</a>
       </div>
       <div class="plan">
         <div class="plan-name">F0-Plus</div>
@@ -222,8 +142,7 @@
           <li><strong>Step-up</strong> TOTP — YubiKey optional</li>
           <li>Keep your keys — no re-enrollment</li>
         </ul>
-        <a class="btn btn-primary" href="/download" style="width:100%; justify-content:center;">Upgrade in the app →</a>
-        <p class="plan-alt">Install Ankayma, then <strong>Settings → Upgrade</strong>. Monthly or $99/year — 2 months free.</p>
+        <a class="btn btn-outline" href="/download" style="width:100%; justify-content:center;">Upgrade in the app →</a>
       </div>
       <div class="plan featured">
         <div class="plan-head">
@@ -243,15 +162,20 @@
           <li id="f1-admins">1 admin included · +$9/extra admin</li>
           <li>Node &amp; domain quotas per role</li>
           <li>Policy engine + team relay</li>
-          <li class="dim">&gt;25 people → per-seat, talk to us</li>
         </ul>
-        <a class="btn btn-primary" id="f1-buy" href="/download" style="width:100%; justify-content:center;">F1-3 · $19/mo — Upgrade in the app →</a>
-        <p class="plan-alt">Install Ankayma, sign in, then <strong>Settings → Upgrade</strong>. · <a href="mailto:hello@ankayma.com?subject=Ankayma%20F1%20Team&amp;body=Team%20size%3A%0AWhat%20you%20need%3A%0A">talk to us</a></p>
+        <a class="btn btn-primary" id="f1-buy" href="/download" style="width:100%; justify-content:center;">Upgrade in the app →</a>
       </div>
     </div>
-    <p class="pricing-note">Caps are soft — anti-abuse, not conversion walls. Need more scale → <strong>Plus</strong>. Invite your first member → <strong>F1 Team</strong>: you become the Admin, and your $9 doesn't change.</p>
-    <p class="pricing-note">Running a field force — agents, franchise staff, shared devices? That's a different shape of problem: <a href="/solutions/nopass/">NoPass — access without passwords →</a></p>
-    <p class="pricing-note">No GitHub, want to pay by invoice, or just want to talk first? <a href="mailto:hello@ankayma.com?subject=Ankayma%20%E2%80%94%20getting%20started&amp;body=How%20I%27d%20like%20to%20start%3A%0AWhat%20I%20need%3A%0A">Talk to us</a> — we'll get you set up.</p>
+    <p class="pricing-note">Sign up with GitHub · No credit card · Cancel anytime</p>
+    <div class="talk-card">
+      <h3><span class="c-acc">Not the standard path? Let's talk</span></h3>
+      <ul class="talk-cases">
+        <li><strong>No GitHub account</strong> — GitHub is the default sign-up; without one, we'll provision your free F0 by email invite.</li>
+        <li><strong>More than 25 people</strong> — per-seat pricing for larger teams.</li>
+        <li><strong>A field force or agent network</strong> — many agents, franchise staff, shared devices. That's a different shape of problem: <a href="/solutions/nopass/">NoPass — access without passwords →</a></li>
+      </ul>
+      <a class="btn btn-primary" href="mailto:hello@ankayma.com?subject=Ankayma%20%E2%80%94%20talk%20to%20us&amp;body=My%20situation%3A%0AWhat%20I%20need%3A%0A">Talk to us →</a>
+    </div>
     <script>
       // Account-first: the website does not sell directly. The seat selector only updates
       // the displayed price/label; purchase happens inside the app (Settings → Upgrade),
@@ -263,7 +187,6 @@
           var n = btn.dataset.n;
           document.getElementById('f1-price').innerHTML = '$' + btn.dataset.mo + ' <span>/ mo · $' + btn.dataset.yr + ' / yr</span>';
           document.getElementById('f1-admins').textContent = btn.dataset.admins + ' · +$9/extra admin';
-          document.getElementById('f1-buy').textContent = 'F1-' + n + ' · $' + btn.dataset.mo + '/mo — Upgrade in the app →';
         });
       });
     </script>
@@ -277,11 +200,11 @@
       <p style="font-size:14px; color:var(--dim); max-width:860px; margin-bottom:18px;">
         Dedicated infrastructure, your own tenant CA, and identity you fully custody — so your provider
         <strong style="color:var(--text);">can't decrypt your traffic, and you can prove it.</strong>
-        We're onboarding a small group of design partners now — it's not generally available yet.
+        It's a <strong style="color:var(--text);">separate product line</strong> — moving from Personal (F0 / F1) is a guided onboarding with our team, not an in-app upgrade. We're onboarding design partners now — not generally available yet.
       </p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
         <a class="btn btn-primary" href="mailto:hello@ankayma.com?subject=Ankayma%20Enterprise%20%E2%80%94%20early%20access&body=Company%3A%0AYour%20role%3A%0ATeam%20size%3A%0AWhat%20you%20need%20(isolation%2C%20compliance%2C%20BYOK%2C%20residency...)%3A%0ATimeline%3A%0A">Request early access →</a>
-        <a class="btn btn-outline" href="mailto:hello@ankayma.com?subject=Ankayma%20Enterprise%20%E2%80%94%20question">Talk to us</a>
+        <!-- <a class="btn btn-outline" href="mailto:hello@ankayma.com?subject=Ankayma%20Enterprise%20%E2%80%94%20question">Talk to us</a> -->
       </div>
       <p style="font-size:12px; color:var(--dim); margin-top:14px;">
         Tell us your use case — we prioritise design partners with concrete compliance or isolation needs. <a href="/enterprise/">See the full Enterprise page →</a>

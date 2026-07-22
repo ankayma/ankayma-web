@@ -1,1 +1,4 @@
 .DS_Store
+
+# Starlight docs portal (separate deploy — docs.ankayma.com)
+docs-site/

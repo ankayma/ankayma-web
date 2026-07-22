@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started — Ankayma User Guide</title>
+  <meta name="description" content="From sign-in to your first proof — SSH from your phone into your laptop — in about five minutes." />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <script src="/nav.js" defer></script>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#getting-started">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> &mdash; CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> &mdash; SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> &mdash; internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> &mdash; access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> &mdash; identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/download">Download</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Getting started</h1>
+    <p>Ankayma puts your machines on a private mesh where they reach each other <strong>directly</strong> — no VPN, no public ports — and you can <strong>prove</strong> the vendor was never in the middle. No credit card: signing in creates your own free <strong>F0</strong> space.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+    <h2>Your first win — NoKey SSH from your phone into your laptop <span style="color:var(--dim);font-weight:600;">(5 minutes)</span></h2>
+    <p>SSH from your <strong>iPhone</strong> into your <strong>MacBook</strong> — no key, no bastion, no public port, and you'll <strong>Prove It</strong> at the end. </p>
+      <!-- Your <strong>MacBook is the target</strong> (the machine you reach); your <strong>iPhone is the client</strong> (where you type). Set the MacBook up first — you scan the QR <em>with the phone</em>, so the laptop shows it and the phone joins with no second GitHub login.</p> -->
+
+    <!-- Step wizard: one tab per step. Do a step, then click Next. -->
+    <div class="wow-tabs" role="tablist" aria-label="First-win steps">
+      <button type="button" class="wow-tab active" role="tab" aria-selected="true" data-panel="gs-step1">1 · Set up MacBook</button>
+      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="gs-step2">2 · Add iPhone</button>
+      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="gs-step3">3 · NoKey SSH</button>
+      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="gs-step4">4 · Prove It</button>
+    </div>
+
+    <div class="wow-panel active" id="gs-step1" role="tabpanel">
+      <div class="deploy-grid wow-split">
+        <div>
+          <p class="wow-steplead"><strong>The MacBook is the target</strong> — the machine you'll reach. <span class="wstep-time">~2 min</span></p>
+          <ol class="prose-actions">
+            <li>Install the Ankayma desktop app and open it — you'll land on the welcome screen.</li>
+            <li>Click <strong>GitHub</strong> and approve access in the browser. The app signs you in automatically; this first sign-in creates your free <strong>F0</strong> space. <em>(No browser? Click "Enter a token instead" and paste the session token.)</em></li>
+            <li>On <strong>Devices</strong>, click <strong>Connect</strong>. macOS asks for your password once — a network device needs admin rights.</li>
+            <li>You'll see <strong>"You're in the mesh"</strong> with your node address. The target is live.</li>
+          </ol>
+          <button type="button" class="btn-next" data-goto="gs-step2">Next: Add the iPhone →</button>
+        </div>
+        <figure class="tab-shot">
+          <img src="images/getting-started-01-macbook-connected.png" alt="Ankayma desktop app, connected — showing the MacBook device name and its overlay endpoint" width="2304" height="1744" loading="lazy" />
+          <figcaption>The desktop app once connected — your MacBook is on the mesh, with its overlay address.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="wow-panel" id="gs-step2" role="tabpanel">
+      <div class="deploy-grid wow-split">
+        <div>
+          <p class="wow-steplead"><strong>The iPhone is the client</strong> — where you'll type. It joins the same account. <span class="wstep-time">~1 min</span></p>
+          <ol class="prose-actions">
+            <li>On the <strong>MacBook</strong>, go to <strong>Devices → Add a device → show a QR</strong>.</li>
+            <li>On the <strong>iPhone</strong>, install Ankayma and tap <strong>Scan QR</strong> on the welcome screen.</li>
+            <li>Scan the MacBook's QR. The iPhone enrols into the <strong>same account</strong> — no second GitHub login.</li>
+            <li>Tap <strong>Connect</strong>. Both machines are now on your mesh.</li>
+          </ol>
+          <button type="button" class="btn-next" data-goto="gs-step3">Next: SSH in →</button>
+        </div>
+        <figure class="tab-shot">
+          <div class="qr-mock">
+            <span class="qr-mock-title">Add a node</span>
+            <img class="qr-img" src="images/qr-sample.svg" alt="Sample QR code (decorative, not a real invite)" width="210" height="210" />
+            <span class="qr-mock-sub">Scan with the Ankayma app on your iPhone</span>
+            <span class="qr-mock-meta">Link expires in 24 hours</span>
+          </div>
+          <figcaption>Sample QR — a real invite is a live credential, never shown in docs.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="wow-panel" id="gs-step3" role="tabpanel">
+      <div class="deploy-grid wow-split">
+        <div>
+          <p class="wow-steplead"><strong>NoKey SSH</strong> — a shell on your laptop, from your phone, with no static key. <span class="wstep-time">~1 min</span></p>
+          <ol class="prose-actions">
+            <li>On the <strong>iPhone</strong>, open <strong>Services</strong>.</li>
+            <li>Find your <strong>MacBook</strong> and tap <strong>SSH</strong>.</li>
+            <li>You're in a shell on your laptop — no bastion, no static key, no public port. Every session lands in your audit ledger.</li>
+          </ol>
+          <button type="button" class="btn-next" data-goto="gs-step4">Next: Prove It →</button>
+        </div>
+        <figure class="tab-shot">
+          <img src="/assets/app-ssh.png" alt="Ankayma app — SSH terminal connected to demo-server from an iPhone" width="656" height="503" loading="lazy" />
+          <figcaption>The app's SSH terminal — a shell on your laptop, opened from your phone.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="wow-panel" id="gs-step4" role="tabpanel">
+      <div class="deploy-grid wow-split">
+        <div>
+          <p class="wow-steplead"><strong>Prove It</strong> — confirm the vendor was never on the wire. <span class="wstep-time">~30 s</span></p>
+          <ol class="prose-actions">
+            <li>Back on <strong>Services</strong>, tap <strong>◈ path</strong> next to the MacBook.</li>
+            <li>Read the path chain: <strong>direct peer-to-peer</strong>, the real endpoint, and <strong>Vendor in path: No ✓</strong>.</li>
+            <li>You just proved the session went straight between your two devices — see <a href="prove-it.html">Prove it</a> for what each row means.</li>
+          </ol>
+          <p class="wow-proof">◈ Proof: no bastion, no static key, no public port — and the path chain shows the vendor was never on the wire.</p>
+        </div>
+        <figure class="tab-shot">
+          <div class="shot-todo">
+            <span class="st-tag">🖼 Screenshot coming</span>
+            <code>getting-started-04-path-chain.png</code>
+            <span class="st-cap">The path chain panel: direct peer-to-peer, Vendor in path No</span>
+          </div>
+        </figure>
+      </div>
+    </div>
+
+    <blockquote><p>Reaching a <strong>server</strong> (a VPS or home box) works the same way: install the agent there so it becomes another target, then SSH into it from any of your devices.</p></blockquote>
+
+    <p>Prefer a browser app? Instead of SSH, reach an internal web app with <strong>NoVPN</strong> — a private name only your mesh resolves, opened in your browser. See <a href="subdomains.html">Subdomains</a>.</p>
+
+    <h2>Where to next</h2>
+    <ul>
+      <li><strong>Keep going solo</strong> — hitting the free limits (10 devices, 5 private names), or want a second factor and raw-TCP tunneling? → <a href="upgrade.html">Upgrade to F0-Plus</a>.</li>
+      <li><strong>Bring a team</strong> — teammates, shared access rules, an admin console? → <a href="members.html">Members</a> and <a href="access.html">Access</a>, on a team tier. See <a href="upgrade.html">Upgrade</a>.</li>
+    </ul>
+    <p>What each tier includes is laid out in <a href="tiers.html">Tiers</a>.</p>
+
+  </div>
+</div>
+
+
+<section class="section" id="how" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="wrap">
+    
+    <div class="section-label">Explore more</div>
+    <h2>Prove something else in 5 minutes</h2>
+    <p>Already did your first win above? Pick what else you want to prove — each path ends in proof you hold, not a promise you trust. Connection is a commodity; the receipt is the product.</p>
+
+    <div class="wow-tabs" role="tablist" aria-label="Five-minute experiences">
+      <button type="button" class="wow-tab active" role="tab" aria-selected="true" data-panel="wow-privdomain">🌐 Private domain</button>
+      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="wow-cicd">🧾 No-secret CI/CD</button>
+      <button type="button" class="wow-tab" role="tab" aria-selected="false" data-panel="wow-ssh">🔑 No-key SSH <span class="badge badge-sm">early access</span></button>
+    </div>
+
+    <div class="wow-panel active" id="wow-privdomain" role="tabpanel">
+      <p class="wow-pitch">Your service on your own domain — only your mesh can see it. No public DNS, no open port, and your client still opens the demo themselves.</p>
+      <div class="deploy-grid wow-split">
+        <div class="wow-steps">
+          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and enroll your devices — app on your laptop or phone, CLI on the machine that runs your service. Keys are generated locally and never leave the device; each one joins your mesh with a stable overlay IP.</span></div>
+          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>Add a private domain and point it at your service — the name exists only inside your mesh.</span></div>
+          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Open it from any of your devices — then send a join-link so your client's device can open it too.</span></div>
+        </div>
+        <figure class="tab-shot">
+          <img src="/assets/app-subdomains.png" alt="Ankayma app — Subdomains screen: a private name mapped to a mesh node, TLS ready" width="656" height="659" loading="lazy" />
+          <figcaption>The app's Subdomains screen — your private name, mapped to your node, TLS ready.</figcaption>
+        </figure>
+      </div>
+      <p class="wow-proof">◈ Proof: no public DNS record, no public port — names resolve only inside your mesh.</p>
+      <p class="wow-tiers">Free: 5 names → Plus: 20 → Team: your team on them</p>
+    </div>
+
+    <div class="wow-panel" id="wow-cicd" role="tabpanel">
+      <p class="wow-pitch">Deploy from CI with no static secret — every run ends in a signed receipt you hold.</p>
+      <div class="deploy-grid wow-split">
+        <div class="wow-steps">
+          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and enroll your prod box — one CLI command. Keys are generated locally; your device <strong>is</strong> your admin identity, no secret to store.</span></div>
+          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>Set the rule from your laptop or phone: <code>agent ci-policy add --repo you/app --ref main --target prod</code>. "This repo, this branch, deploys to this box."</span></div>
+          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Push. Your Action mints a short-lived OIDC token — scoped, deploy-only, expires in minutes, nothing static in CI — and the signed run-receipt lands in your tamper-evident ledger.</span></div>
+        </div>
+        <div class="receipt" aria-label="Example signed run-receipt">
+          <div class="receipt-bar"><span></span><span></span><span></span></div>
+          <div class="receipt-body">
+            <div class="rl-full"><span class="c-dim">$</span> agent ci-deploy</div>
+            <div class="rl-full"><span class="c-ok">✓</span> ephemeral access granted <span class="c-dim">· expires 15m</span></div>
+            <div class="rl-head">Signed run-receipt</div>
+            <div class="rl"><span class="rk">run</span><span class="rv">ci_4747886d</span></div>
+            <div class="rl"><span class="rk">repo</span><span class="rv">acme/api</span></div>
+            <div class="rl"><span class="rk">ref</span><span class="rv">refs/heads/main</span></div>
+            <div class="rl"><span class="rk">issuer</span><span class="rv">github</span></div>
+            <div class="rl"><span class="rk">scope</span><span class="rv">deploy-only</span></div>
+            <div class="rl"><span class="rk">secret</span><span class="rv"><span class="c-ok">none</span></span></div>
+            <div class="rl"><span class="rk">ledger</span><span class="rv">CiDeployAccess <span class="c-dim">· tamper-evident</span></span></div>
+            <div class="rl"><span class="rk">verify</span><span class="rv">chain_intact <span class="c-ok">✓</span></span></div>
+            <div class="rl-head">Path</div>
+            <div class="rl"><span class="rk">data</span><span class="rv">direct WireGuard → prod-vps</span></div>
+            <div class="rl"><span class="rk">vendor</span><span class="rv">control channel only — <span class="c-ok">not on the data path</span></span></div>
+          </div>
+        </div>
+      </div>
+      <p class="wow-proof">◈ Proof: the run-receipt — which run, which repo, which service — <code>chain_intact ✓</code>.</p>
+      <p class="wow-tiers">Free: your repos → Team: your whole team → Growth: auditor-ready evidence</p>
+    </div>
+
+    <div class="wow-panel" id="wow-ssh" role="tabpanel">
+      <p class="wow-pitch">SSH to prod: no bastion, no static key — every session lands in your ledger.</p>
+      <div class="deploy-grid wow-split">
+        <div class="wow-steps">
+          <div class="wstep"><span class="wstep-num">1</span><span class="wstep-time">~3 min</span><span>Sign in with GitHub and install the agent on your laptop and your server — both enroll into the mesh; your device is your identity, no key file to copy around.</span></div>
+          <div class="wstep"><span class="wstep-num">2</span><span class="wstep-time">~1 min</span><span>SSH to the box over the mesh: <code>agent ssh prod-vps</code> — no bastion, no VPN, no static key.</span></div>
+          <div class="wstep"><span class="wstep-num">3</span><span class="wstep-time">~1 min</span><span>Check your ledger: the session start is already there — who, which node, when.</span></div>
+        </div>
+        <figure class="tab-shot">
+          <img src="/assets/app-ssh.png" alt="Ankayma app — SSH terminal connected to demo-server from an iPhone" width="656" height="503" loading="lazy" />
+          <figcaption>A real SSH session from the iPhone app — connected to your box, no key file, no bastion.</figcaption>
+        </figure>
+      </div>
+      <p class="wow-proof">◈ Proof: every session start is a ledger entry — who, which node, when.</p>
+      <p class="wow-tiers">Free: your devices → Team: your team → Growth: session evidence</p>
+    </div>
+
+    <div class="prove-callout">
+      <div class="prove-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+      </div>
+      <div>
+        <strong>Press “Prove it.”</strong>
+        <p>Most overlays can tell you it connected. None can hand you proof your traffic never touched the vendor. Ankayma shows the real path as an artifact you hold — not a promise you trust.</p>
+      </div>
+    </div>
+
+    <p class="honest-note">
+      Honest about the edges: at F0 the receipt is <strong>tamper-evident</strong> (anchored in an append-only ledger). The ledger records connection-level facts — which run, which identity, which service it reached — not the commands run inside a session. Signing it with your own key plus an external witness is on the roadmap (Growth). Path-proof is absolute for direct peer-to-peer connections. <a href="/honest-limits.html">See our honest limits →</a>
+    </p>
+
+    <div class="under-hood">
+      <span class="uh-label">Under the hood</span>
+      <span class="uh-items">WireGuard end-to-end · your own tenant CA · NAT traversal (STUN + relay fallback) · default-deny policy · open-source agent, Cosign-signed builds</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="docs-nextprev">
+      <a href="index.html">← All guides</a>
+      <a href="devices.html">Devices →</a>
+    </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/docs/">User guide</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    function setup(root) {
+      if (!root) return;
+      var tabs = root.querySelectorAll('.wow-tab');
+      var panels = root.querySelectorAll('.wow-panel');
+      function activate(id) {
+        tabs.forEach(function (t) { var on = t.dataset.panel === id; t.classList.toggle('active', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+        panels.forEach(function (p) { p.classList.toggle('active', p.id === id); });
+      }
+      tabs.forEach(function (t) { t.addEventListener('click', function () { activate(t.dataset.panel); }); });
+      root.querySelectorAll('[data-goto]').forEach(function (b) { b.addEventListener('click', function () { activate(b.dataset.goto); var bar = root.querySelector('.wow-tabs'); if (bar) bar.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
+    }
+    setup(document.querySelector('.prose'));
+    setup(document.getElementById('how'));
+  })();
+</script>
+</body>
+</html>

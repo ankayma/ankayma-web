@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security &amp; two-factor — Ankayma User Guide</title>
+  <meta name="description" content="Passwordless sign-in, a TOTP second factor, and step-up prompts for sensitive actions — every step in your audit ledger." />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <script src="/nav.js" defer></script>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#getting-started">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> &mdash; CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> &mdash; SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> &mdash; internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> &mdash; access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> &mdash; identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/download">Download</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Security &amp; two-factor</h1>
+    <p>Passwordless sign-in, a second factor for sensitive actions, and every step written to a tamper-evident ledger.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <h2>Passwordless by default (NoPass)</h2>
+    <p>You sign in with GitHub and your device's own identity — not a shared secret. There's no password to phish, reuse, or leak.</p>
+
+    <h2>A second factor when it matters</h2>
+    <p>Add an authenticator app (TOTP) as a <strong>step-up</strong> factor. Sensitive actions — elevating access, changing a deploy rule, inviting or removing a teammate — prompt for that second factor right then, and the step-up is recorded in your audit ledger. A hardware security key (YubiKey) is optional, and required only at higher assurance tiers.</p>
+
+    <h2>Device posture</h2>
+    <p>Each device carries a short-lived mesh certificate and an assurance level (AAL). The app shows both, so you always know what a session actually holds.</p>
+
+    <h2>Why it matters for the buyer</h2>
+    <p>For a security or compliance reviewer, this is the difference between "trust us" and evidence: no stored passwords, step-up on sensitive actions, and a signed record of who did what.</p>
+
+    <p><a class="btn btn-outline" href="https://docs.ankayma.com/security/">Full guide → docs.ankayma.com</a></p>
+
+    <div class="docs-nextprev">
+      <a href="index.html">← User Guide</a>
+      <a href="access.html">Access control →</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/docs/">User guide</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

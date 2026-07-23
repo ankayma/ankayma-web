@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access control — Ankayma User Guide</title>
+  <meta name="description" content="Decide who can reach what, default-deny, on real identity — every policy version hash-chained and tamper-evident." />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <script src="/nav.js" defer></script>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="logo" href="/">An<span>kayma</span></a>
+    <ul>
+      <li><a href="/#getting-started">Product</a></li>
+      <li class="nav-drop"><a href="/solutions/">Solutions</a>
+        <ul class="drop-menu">
+          <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> &mdash; CI/CD without static secrets</a></li>
+          <li><a href="/solutions/nokey/"><strong>NoKey</strong> &mdash; SSH without static keys</a></li>
+          <li><a href="/solutions/novpn/"><strong>NoVPN</strong> &mdash; internal apps without a VPN</a></li>
+          <li><a href="/solutions/nopass/"><strong>NoPass</strong> &mdash; access without passwords</a></li>
+          <li><a href="/solutions/nhi-agents/"><strong>NoAPIKey</strong> &mdash; identity for AI agents &amp; scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/enterprise/">Enterprise</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/download">Download</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>Access control</h1>
+    <p>Decide who can reach what — default-deny, on real identity — with every policy version tamper-evident.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="prose">
+
+    <h2>Default-deny</h2>
+    <p>Nothing is reachable unless a rule says so. An empty policy means teammates can reach <strong>nothing</strong> — you grant access deliberately, and you never have to remember to take it away.</p>
+
+    <h2>Grant who → what</h2>
+    <p>A rule reads plainly: a <strong>who</strong> (a role and/or a tag) may reach a <strong>what</strong> (a service and/or a resource tag). A teammate's <em>Services</em> list is derived from these rules, so it can never drift out of sync with the policy.</p>
+
+    <h2>Only real identity</h2>
+    <p>You can only select on real identity attributes — role, tags, assurance level, owner, service, tier. You <em>cannot</em> base access on cosmetic things like a device's display name; the server rejects them outright. That keeps decisions auditable and closes accidental backdoors.</p>
+
+    <h2>Tamper-evident</h2>
+    <p>Every publish appends a new, hash-chained version of your policy. The app shows the version and <strong>chain intact ✓</strong> — proof the history hasn't been altered.</p>
+
+    <h2>Why it matters for the buyer</h2>
+    <p>For a team or a security reviewer, this is least-privilege you can prove: default-deny, decisions on real identity, and a tamper-evident history.</p>
+
+    <p><a class="btn btn-outline" href="https://docs.ankayma.com/access/">Full guide → docs.ankayma.com</a></p>
+
+    <div class="docs-nextprev">
+      <a href="security.html">← Security</a>
+      <a href="index.html">User Guide →</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Ankayma.</span>
+    <ul>
+      <li><a href="/docs/">User guide</a></li>
+      <li><a href="/honest-limits.html">Honest limits</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,7 +1,8 @@
 # Members (team)
 
 When you go from one person to a team, the **Members** screen is where you invite
-people and manage who's who. *Team tier (F1-Starter): up to 10 members.*
+people and manage who's who. *Team tier (F1): up to the seat count you bought — 3, 5,
+10, or 25 members. See [Upgrade](upgrade.md).*
 
 ## Roles
 
@@ -37,5 +38,5 @@ Their account drops back to its own personal space.
 
 ## Cap reached?
 
-The counter at the top (e.g. `7/10`) shows usage. At the cap, invites are refused until
-you remove a member or move to a higher tier.
+The counter at the top (e.g. `7/10`) shows usage against your seat count. At the cap,
+invites are refused until you remove a member or move to a larger seat pack.

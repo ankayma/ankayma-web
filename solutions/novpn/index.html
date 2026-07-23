@@ -14,6 +14,7 @@
   <meta property="og:description" content="No public gateway, no flat network, no vendor cloud on your data path. The outcome ZTNA promises — without a new middleman." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ankayma.com/solutions/novpn/" />
+  <script src="/nav.js" defer></script>
 </head>
 <body>
 
@@ -21,7 +22,7 @@
   <div class="inner">
     <a class="logo" href="/">An<span>kayma</span></a>
     <ul>
-      <li><a href="/#how">Product</a></li>
+      <li><a href="/#getting-started">Product</a></li>
       <li class="nav-drop"><a href="/solutions/">Solutions</a>
         <ul class="drop-menu">
           <li><a href="/solutions/nosecret-cicd/"><strong>NoSecret</strong> — CI/CD without static secrets</a></li>
@@ -37,6 +38,9 @@
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/download">Download</a></li>
     </ul>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -111,7 +115,7 @@
     <h2>The market already agreed to leave — the question is where to</h2>
     <p>65% of enterprises plan to replace their VPN with ZTNA (<a href="https://www.gartner.com/en/documents/6780434" target="_blank" rel="noopener">Gartner</a>). But most ZTNA fixes these pains by routing your traffic through the vendor's cloud — you trade the old middleman for a new one, this time outside your jurisdiction.</p>
     <p>That's not a feature gap they'll ship past next quarter; it's their business model. Cloud ZTNA creates value by working <em>on</em> your traffic — inspection, filtering, DLP, behavioral analytics. To work on traffic they must see it; to see it, it must flow through them. When you require <em>"no third party on my data path,"</em> they can't comply without switching off the very thing they sell.</p>
-    <p>A question you can put to any vendor: <strong>"If we turn off the path through your cloud, what's left of the product?"</strong> For cloud ZTNA, the honest answer is: almost nothing. For Ankayma, everything — the control plane only coordinates connections and was never on the data path, and there's a <a href="/#how">Prove-it button</a> so you don't have to take our word for it.</p>
+    <p>A question you can put to any vendor: <strong>"If we turn off the path through your cloud, what's left of the product?"</strong> For cloud ZTNA, the honest answer is: almost nothing. For Ankayma, everything — the control plane only coordinates connections and was never on the data path, and there's a <a href="/#getting-started">Prove-it button</a> so you don't have to take our word for it.</p>
     <p>One honest boundary: this argument targets cloud-routed ZTNA. Peer-to-peer overlays share our data-plane answer — with them, the comparison is about who holds your identity, your control plane, and your logs. That story is on the <a href="/">front page</a>.</p>
 
     <h2>Why ZTNA migrations stall — and why this one doesn't</h2>
@@ -121,7 +125,7 @@
 
     <h2>In the same mesh: NoKey — SSH without static keys</h2>
     <p>The other public door most teams keep open is SSH. The average organization holds around 23,000 SSH keys and 90% of them are unmanaged; 46% of organizations never rotate (<a href="https://www.computerworld.com/article/1610856/poorly-managed-ssh-keys-pose-serious-risks-for-most-companies.html" target="_blank" rel="noopener">Ponemon / Venafi — magnitudes hold across surveys</a>). Keys don't expire and don't leave when people do — on average, every server carries one orphan root key of someone who already left (<a href="https://www.businesswire.com/news/home/20210128005138/en/Venafi-Study-CIOs-Massively-Underestimate-SSH-Risks" target="_blank" rel="noopener">Venafi</a>).</p>
-    <p>A static key is a mechanical key cut in dozens of copies and handed out over the years — nobody remembers who holds which copy, to which door. NoKey swaps that for a door that opens on the person plus a badge that expires: engineers reach machines by device identity, root is a signed grant that lives at most fifteen minutes and falls away on its own, every session start lands in your ledger, and the SSH server binds inside the overlay — no port on the internet, no bastion, and it never touches your existing sshd. Fifteen minutes isn't an exotic number: the industry's short-lived credentials already speak in minutes — Cloudflare mints 3-minute SSH certificates, EC2 Instance Connect keys live 60 seconds. Offboarding a person is revoking one identity. Works from a laptop — and from the phone in your pocket. <a href="/#how">See the 5-minute walkthrough →</a></p>
+    <p>A static key is a mechanical key cut in dozens of copies and handed out over the years — nobody remembers who holds which copy, to which door. NoKey swaps that for a door that opens on the person plus a badge that expires: engineers reach machines by device identity, root is a signed grant that lives at most fifteen minutes and falls away on its own, every session start lands in your ledger, and the SSH server binds inside the overlay — no port on the internet, no bastion, and it never touches your existing sshd. Fifteen minutes isn't an exotic number: the industry's short-lived credentials already speak in minutes — Cloudflare mints 3-minute SSH certificates, EC2 Instance Connect keys live 60 seconds. Offboarding a person is revoking one identity. Works from a laptop — and from the phone in your pocket. <a href="/#getting-started">See the 5-minute walkthrough →</a></p>
 
     <h2>Who reaches for NoVPN</h2>
     <p><strong>The freelancer who sells with demos</strong> — each project pinned to its own private domain, the client's device invited into the mesh, and the demo opens on their side with nothing public. <strong>The team with an internal portal</strong> — wikis, dashboards, admin panels that today sit behind a VPN nobody enjoys, tomorrow carry private names with per-identity access and a ledger.</p>
@@ -145,7 +149,7 @@
       </ul>
       <div class="sc-result">
         <p><strong>That's the door.</strong> Put one internal app on a private name in five minutes — free, nothing public.</p>
-        <a class="btn btn-primary" href="/#download">Download free</a>
+        <a class="btn btn-primary" href="/download">Download free</a>
       </div>
     </div>
 
@@ -157,8 +161,8 @@
     <p class="honest-note" style="margin-top:24px;">We publish what this doesn't do yet, in plain words: <a href="/honest-limits.html">our honest limits →</a></p>
 
     <div class="hero-actions" style="margin-top:24px;">
-      <a class="btn btn-primary" href="/#download">Download — it's free</a>
-      <a class="btn btn-outline" href="/#how">See how it works</a>
+      <a class="btn btn-primary" href="/download">Download — it's free</a>
+      <a class="btn btn-outline" href="/#getting-started">See how it works</a>
     </div>
 
   </div>
